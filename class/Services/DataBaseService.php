@@ -232,5 +232,82 @@ class DataBaseService
 
         return $isOk;
     }
+
+/**
+     * Create a reservation.
+     */
+
+    public function createReservation(string $nbrPassengers): string
+    {
+        $reservationId = '';
+
+        $data = [
+            'nbrPassengers' => $nbrPassengers,
+        ];
+        $sql = 'INSERT INTO reservations (nbrPassengers) VALUES (:nbrPassengers)';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+        if ($isOk) {
+            $reservationId = $this->connection->lastInsertId();
+        }
+
+        return $reservationId;
+    }
+    
+    /**
+     * Return all cars.
+     */
+    public function getReservations(): array
+    {
+        $reservations = [];
+
+        $sql = 'SELECT * FROM reservations';
+        $query = $this->connection->query($sql);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $reservations = $results;
+        }
+
+        return $reservations;
+    }
+
+
+  /**
+     * Update a reservation.
+     */
+    public function updateReservation(string $idup, string $nbrPassengers): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'id' => $idup,
+            'nbrPassengers' => $nbrPassengers,
+        ];
+        $sql = 'UPDATE reservations SET nbrPassengers = :nbrPassengers WHERE id = :id;';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+        
+        return $isOk;
+    }
+
+    /**
+     * Delete a reservation.
+     */
+    public function deleteReservation(string $id): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'id' => $id,
+        ];
+        $sql = 'DELETE FROM reservations WHERE id = :id;';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
 }
+
+
 
