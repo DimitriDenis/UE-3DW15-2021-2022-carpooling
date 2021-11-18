@@ -23,50 +23,37 @@ $cars = $carsService->getCars();
                 <table id="in_1">
                     <tr>
                         <td>
-                            <label for="firstname">Prénom :</label>  
+                            <label for="brand">Marque :</label>  
                         </td>
                         <td>
-                            <input type="text" name="firstname">
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <label for="lastname">Nom :</label>
-                        </td>
-                        <td>
-                            <input type="text" name="lastname">
+                            <input type="text" name="brand">
                         </td>
                     </tr>
 
                     <tr>
                         <td>
-                            <label for="email">Email :</label>
+                            <label for="model">Modèle :</label>
                         </td>
                         <td>
-                            <input type="text" name="email">
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>
-                            <label for="birthday">Date d'anniversaire :</label>
-                        </td>
-                        <td>
-                            <input type="text" name="birthday" placeholder="format dd-mm-yyyy :">
+                            <input type="text" name="model">
                         </td>
                     </tr>
 
                     <tr>
                         <td>
-                            <label for="cars">Voiture(s) :</label>
+                            <label for="color">Couleur :</label>
                         </td>
                         <td>
-                            <?php foreach ($cars as $car): ?>
-                                <?php $carName = $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor(). ' ' . $car->getNbrSlots(); ?>
-                                <input type="checkbox" name="cars[]" value="<?php echo $car->getId(); ?>"><?php echo $carName; ?>
-                                <br />
-                            <?php endforeach; ?>
+                            <input type="text" name="color">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="nbrSlots">Places disponibles</label>
+                        </td>
+                        <td>
+                            <input type="text" name="nbrSlots">
                         </td>
                     </tr>
 
@@ -121,16 +108,16 @@ $cars = $carsService->getCars();
 
                     <tr>
                         <td>
-                            <label for="firstname">Prénom :</label>
+                            <label for="brand">Marque :</label>
                         </td>
                         <td>
-                            <input type="text" name="firstname">
+                            <input type="text" name="brand">
                         </td>
                     </tr>
 
                     <tr>
                         <td>
-                            <label for="lastname">Nom :</label>
+                            <label for="lastname">Modèle :</label>
                         </td>
                         <td>
                             <input type="text" name="lastname">
@@ -139,19 +126,19 @@ $cars = $carsService->getCars();
 
                     <tr>
                         <td>
-                            <label for="email">Email :</label>
+                            <label for="color">Couleur :</label>
                         </td>
                         <td>
-                            <input type="text" name="email">
+                            <input type="text" name="color">
                         </td>
                     </tr>
 
                     <tr>
                         <td>
-                            <label for="birthday">Date d'anniversaire :</label>
+                            <label for="nbrSlots">Places disponibles :</label>
                         </td>
                         <td>
-                            <input type="text" name="birthday" placeholder="format dd-mm-yyyy :">
+                            <input type="text" name="nbrSlots">
                         </td>
                     </tr>
 
