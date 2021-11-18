@@ -1,18 +1,15 @@
 <head>
     <meta charset="utf-8">
     <link href="css/style.css" rel="stylesheet" type="text/css">
-    <title>Page de modification de users</title>
+    <title>Page de modification des voitures</title>
   </head>
 <?php
 use App\Controllers\CarsController;
-use App\Services\CarsService;
 
 require __DIR__ . '/vendor/autoload.php';
 
-$carsService = new CarsService();
 $controller = new CarsController();
 echo $controller->getCars();
-echo $controller->createCar();
 ?>
 <table id="first_table">
     <tr>
@@ -49,10 +46,10 @@ echo $controller->createCar();
 
                     <tr>
                         <td>
-                            <label for="nbrSlots">Places disponibles</label>
+                            <label for="nbrSlots">Places disponibles :</label>
                         </td>
                         <td>
-                            <input type="number" name="nbrSlots">
+                            <input type="text" name="nbrSlots">
                         </td>
                     </tr>
 
@@ -62,38 +59,12 @@ echo $controller->createCar();
                         </td>
                     </tr>          
                 </table>
-            </form>
-        </td>
-<?php
-//echo $controller->deleteCar();
-?>
-        <td>
-            <p>Supression d'une voiture</p>
-            <form method="post" action="cars_crud.php" name ="carDeleteForm">
-                <table id='in_2'>
-                    <tr>
-                        <td>
-                            <label for="id">Id :</label>
-                        </td>
-                        <td>
-                            <input type="text" name="id">
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td colspan="2">
-                            <input type="submit" value="Supprimer la voiture">
-                        </td>
-                    </tr>
-                </table>
+                <?php echo $controller->createCar(); ?>
             </form>
         </td>
 
-<?php
-echo $controller->updateCar();
-?>
         <td>
-            <p>Mise à jour d'une voiture</p>
+        <p>Mise à jour d'une voiture</p>
             <form method="post" action="cars_crud.php" name ="carUpdateForm">
                 <table id='in-3'>
                     <tr>
@@ -101,7 +72,7 @@ echo $controller->updateCar();
                             <label for="id">Id :</label>
                         </td>
                         <td>
-                            <input type="text" name="id">
+                            <input type="text" name="idup">
                         </td>
                     </tr>
 
@@ -147,6 +118,30 @@ echo $controller->updateCar();
                         </td>
                     </tr>
                 </table>
+                <?php echo $controller->updateCar(); ?>
+            </form>
+        </td>
+
+        <td>
+            <p>Supression d'une voiture</p>
+            <form method="post" action="cars_crud.php" name ="carDeleteForm">
+                <table id='in_2'>
+                    <tr>
+                        <td>
+                            <label for="id">Id :</label>
+                        </td>
+                        <td>
+                            <input type="text" name="iddel">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="Supprimer la voiture">
+                        </td>
+                    </tr>
+                </table>
+                <?php echo $controller->deleteCar(); ?>
             </form>
         </td>
     </tr>

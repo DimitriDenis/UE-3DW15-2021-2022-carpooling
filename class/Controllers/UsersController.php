@@ -117,10 +117,10 @@ class UsersController
         $html = '';
 
         // If the form have been submitted :
-        if (isset($_POST['id'])) {
+        if (isset($_POST['iddel'])) {
             // Delete the user :
             $usersService = new UsersService();
-            $isOk = $usersService->deleteUser($_POST['id']);
+            $isOk = $usersService->deleteUser($_POST['iddel']);
             if ($isOk) {
                 $html = 'Utilisateur supprimé avec succès.';
             } else {

@@ -71,7 +71,7 @@ class DataBaseService
     }
 
     /**
-     * Update an user.
+     * Update a user.
      */
     public function updateUser(string $id, string $firstname, string $lastname, string $email, DateTime $birthday): bool
     {
@@ -92,37 +92,20 @@ class DataBaseService
     }
 
     /**
-     * Delete an user.
+     * Delete a user.
      */
-    public function deleteUser(string $id): bool
+    public function deleteUser(string $id_del): bool
     {
         $isOk = false;
 
         $data = [
-            'id' => $id,
+            'id' => $id_del,
         ];
         $sql = 'DELETE FROM users WHERE id = :id;';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
         return $isOk;
-    }
-
-    /**
-     * Return all cars.
-     */
-    public function getCars(): array
-    {
-        $cars = [];
-
-        $sql = 'SELECT * FROM cars';
-        $query = $this->connection->query($sql);
-        $results = $query->fetchAll(PDO::FETCH_ASSOC);
-        if (!empty($results)) {
-            $cars = $results;
-        }
-
-        return $cars;
     }
 
     /**
@@ -193,6 +176,24 @@ class DataBaseService
 
         return $carId;
     }
+    
+    /**
+     * Return all cars.
+     */
+    public function getCars(): array
+    {
+        $cars = [];
+
+        $sql = 'SELECT * FROM cars';
+        $query = $this->connection->query($sql);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $cars = $results;
+        }
+
+        return $cars;
+    }
+
 
   /**
      * Update a car.
@@ -212,10 +213,24 @@ class DataBaseService
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
         
-
         return $isOk;
     }
 
+    /**
+     * Delete a car.
+     */
+    public function deleteCar(string $iddel): bool
+    {
+        $isOk = false;
 
+        $data = [
+            'id' => $iddel,
+        ];
+        $sql = 'DELETE FROM cars WHERE id = :id;';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
 }
 

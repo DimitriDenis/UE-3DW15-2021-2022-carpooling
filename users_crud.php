@@ -1,7 +1,7 @@
 <head>
     <meta charset="utf-8">
     <link href="css/style.css" rel="stylesheet" type="text/css">
-    <title>Page de modification de users</title>
+    <title>Page de modification des utilisateurs</title>
   </head>
 <?php
 use App\Controllers\UsersController;
@@ -11,8 +11,6 @@ require __DIR__ . '/vendor/autoload.php';
 
 $controller = new UsersController();
 echo $controller->getUsers();
-
-echo $controller->createUser();
 
 $carsService = new CarsService();
 $cars = $carsService->getCars();
@@ -79,38 +77,11 @@ $cars = $carsService->getCars();
                         </td>
                     </tr>          
                 </table>
+                <?php echo $controller->createUser();?>
             </form>
         </td>
-<?php
-echo $controller->deleteUser();
-?>
         <td>
-            <p>Supression d'un utilisateur</p>
-            <form method="post" action="users_crud.php" name ="userDeleteForm">
-                <table id='in_2'>
-                    <tr>
-                        <td>
-                            <label for="id">Id :</label>
-                        </td>
-                        <td>
-                            <input type="text" name="id">
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td colspan="2">
-                            <input type="submit" value="Supprimer un utilisateur">
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </td>
-
-<?php
-echo $controller->updateUser();
-?>
-        <td>
-            <p>Mise à jour d'un utilisateur</p>
+        <p>Mise à jour d'un utilisateur</p>
             <form method="post" action="users_crud.php" name ="userUpdateForm">
                 <table id='in-3'>
                     <tr>
@@ -164,6 +135,29 @@ echo $controller->updateUser();
                         </td>
                     </tr>
                 </table>
+                <?php echo $controller->updateUser(); ?>
+            </form>
+        </td>
+        <td>
+            <p>Supression d'un utilisateur</p>
+            <form method="post" action="users_crud.php" name ="userDeleteForm">
+                <table id='in_2'>
+                    <tr>
+                        <td>
+                            <label for="id">Id :</label>
+                        </td>
+                        <td>
+                            <input type="text" name="iddel">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="Supprimer un utilisateur">
+                        </td>
+                    </tr>
+                </table>
+                <?php echo $controller->deleteUser(); ?>
             </form>
         </td>
     </tr>

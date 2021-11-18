@@ -58,18 +58,16 @@ class CarsController
                 $car->getBrand() . ' ' .
                 $car->getModel() . ' ' .
                 $car->getColor() . ' ' .
-                $car->getNbrSlots();
+                $car->getNbrSlots(). '<br />';
                 
         }
 
         return $html;
     }
 
-
     /**
-     * Return the html for the create action.
+     * Return the html for the update action.
      */
-
     public function updateCar(): string
     {
         $html = '';
@@ -80,16 +78,16 @@ class CarsController
             isset($_POST['model']) &&
             isset($_POST['color']) &&
             isset($_POST['nbrSlots'])) {
-            // Create the user :
+            // Update the car :
             $carsService = new CarsService();
             $isOk = $carsService->setCar(
-                
-                $_POST['id'],
+                $_POST['idup'],
                 $_POST['brand'],
                 $_POST['model'],
                 $_POST['color'],
                 $_POST['nbrSlots']
             );
+            echo $isOk;
             if ($isOk){
                 $html = "La voiture à bien été modifiée !";
             }
@@ -99,6 +97,27 @@ class CarsController
         }
         return $html;
 
-    }  
+    } 
+        /**
+     * Delete an user.
+     */
+    public function deleteCar(): string
+    {
+        $html = '';
+
+        // If the form have been submitted :
+        if (isset($_POST['iddel'])) {
+            // Delete the user :
+            $carsService = new carsService();
+            $isOk = $carsService->deleteCar($_POST['iddel']);
+            if ($isOk) {
+                $html = 'La voiture à été supprimé avec succès.';
+            } else {
+                $html = 'Erreur lors de la supression de la voiture.';
+            }
+        }
+
+        return $html;
+    }
 
 }
