@@ -198,13 +198,13 @@ class DataBaseService
   /**
      * Update a car.
      */
-    public function updateCar(string $id, string $brand, string $model, string $color, string $nbrSlots): bool
+    public function updateCar(string $idup, string $brandup, string $model, string $color, string $nbrSlots): bool
     {
         $isOk = false;
 
         $data = [
-            'id' => $id,
-            'brand' => $brand,
+            'id' => $idup,
+            'brand' => $brandup,
             'model' => $model,
             'color' => $color,
             'nbrSlots' => $nbrSlots,

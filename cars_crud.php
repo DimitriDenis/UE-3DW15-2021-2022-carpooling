@@ -59,7 +59,7 @@ echo $controller->getCars();
                         </td>
                     </tr>          
                 </table>
-                <?php echo $controller->createCar(); ?>
+                <?php echo $controller->createCar();?>
             </form>
         </td>
 
@@ -69,7 +69,7 @@ echo $controller->getCars();
                 <table id='in-3'>
                     <tr>
                         <td>
-                            <label for="id">Id :</label>
+                            <label for="idup">Id :</label>
                         </td>
                         <td>
                             <input type="text" name="idup">
@@ -81,7 +81,7 @@ echo $controller->getCars();
                             <label for="brand">Marque :</label>
                         </td>
                         <td>
-                            <input type="text" name="brand">
+                            <input type="text" name="brandup">
                         </td>
                     </tr>
 
@@ -90,7 +90,7 @@ echo $controller->getCars();
                             <label for="lastname">Modèle :</label>
                         </td>
                         <td>
-                            <input type="text" name="lastname">
+                            <input type="text" name="model">
                         </td>
                     </tr>
 
@@ -118,17 +118,16 @@ echo $controller->getCars();
                         </td>
                     </tr>
                 </table>
-                <?php echo $controller->updateCar(); ?>
+                <?php echo $controller->updateCar();?>
             </form>
         </td>
-
         <td>
             <p>Supression d'une voiture</p>
             <form method="post" action="cars_crud.php" name ="carDeleteForm">
                 <table id='in_2'>
                     <tr>
                         <td>
-                            <label for="id">Id :</label>
+                            <label for="iddel">Id :</label>
                         </td>
                         <td>
                             <input type="text" name="iddel">
@@ -141,7 +140,7 @@ echo $controller->getCars();
                         </td>
                     </tr>
                 </table>
-                <?php echo $controller->deleteCar(); ?>
+                <?php echo $controller->deleteCar();?>
             </form>
         </td>
     </tr>

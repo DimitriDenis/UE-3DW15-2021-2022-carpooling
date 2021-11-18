@@ -73,8 +73,8 @@ class CarsController
         $html = '';
 
         // If the form have been submitted :
-        if ( isset($_POST['id']) &&
-            isset($_POST['brand']) &&
+        if ( isset($_POST['idup']) &&
+            isset($_POST['brandup']) &&
             isset($_POST['model']) &&
             isset($_POST['color']) &&
             isset($_POST['nbrSlots'])) {
@@ -82,12 +82,11 @@ class CarsController
             $carsService = new CarsService();
             $isOk = $carsService->setCar(
                 $_POST['idup'],
-                $_POST['brand'],
+                $_POST['brandup'],
                 $_POST['model'],
                 $_POST['color'],
                 $_POST['nbrSlots']
             );
-            echo $isOk;
             if ($isOk){
                 $html = "La voiture à bien été modifiée !";
             }
