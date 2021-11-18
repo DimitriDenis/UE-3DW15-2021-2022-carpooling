@@ -197,24 +197,23 @@ class DataBaseService
   /**
      * Update a car.
      */
-    public function updateCar(string $brand, string $model, string $color, string $nbrSlots): string
+    public function updateCar(string $id, string $brand, string $model, string $color, string $nbrSlots): bool
     {
-        $carId = '';
+        $isOk = false;
 
         $data = [
+            'id' => $id,
             'brand' => $brand,
             'model' => $model,
             'color' => $color,
             'nbrSlots' => $nbrSlots,
         ];
-        $sql = 'INSERT INTO cars (brand, model, color, nbrSlots) VALUES (:brand, :model, :color, :nbrSlots)';
+        $sql = 'UPDATE cars SET brand = :brand, model = :model, color = :color, nbrSlots = :nbrSlots WHERE id = :id;';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
-        if ($isOk) {
-            $carId = $this->connection->lastInsertId();
-        }
+        
 
-        return $carId;
+        return $isOk;
     }
 
 

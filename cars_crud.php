@@ -90,7 +90,7 @@ echo $controller->createCar();
         </td>
 
 <?php
-//echo $controller->updateCar();
+echo $controller->updateCar();
 ?>
         <td>
             <p>Mise à jour d'une voiture</p>
