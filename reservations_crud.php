@@ -39,36 +39,9 @@ $reservations = $reservationsService->getReservations();
                 <?php echo $controller->createReservation();?>
             </form>
         </td>
-    <?php
-echo $controller->deleteReservation();
-    ?>
-        <td>
-            <p>Supression d'une réservation</p>
-            <form method="post" action="reservations_crud.php" name ="reservationDeleteForm">
-                <table id='in_2'>
-                    <tr>
-                        <td>
-                            <label for="id">Id :</label>
-                        </td>
-                        <td>
-                            <input type="text" name="id">
-                        </td>
-                    </tr>
 
-                    <tr>
-                        <td colspan="2">
-                            <input type="submit" value="Supprimer une reservation">
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        </td>
-
-    <?php
-echo $controller->updateReservation();
-    ?>
         <td>
-            <p>Mise à jour d'une réservation</p>
+        <p>Mise à jour d'une réservation</p>
             <form method="post" action="reservations_crud.php" name ="reservationUpdateForm">
                 <table id='in-3'>
                     <tr>
@@ -85,11 +58,9 @@ echo $controller->updateReservation();
                             <label for="nbrPassengers">Nombre de passagers :</label>
                         </td>
                         <td>
-                            <input type="text" name="nbrPassengers">
+                            <input type="text" name="nbrPassengersup">
                         </td>
                     </tr>
-
-                    
 
                     <tr>
                         <td colspan="2">
@@ -97,6 +68,30 @@ echo $controller->updateReservation();
                         </td>
                     </tr>
                 </table>
+                <?php echo $controller->updateReservation(); ?>
+            </form>
+        </td>
+
+        <td>
+            <p>Supression d'une réservation</p>
+            <form method="post" action="reservations_crud.php" name ="reservationDeleteForm">
+                <table id='in_2'>
+                    <tr>
+                        <td>
+                            <label for="id">Id :</label>
+                        </td>
+                        <td>
+                            <input type="text" name="iddel">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2">
+                            <input type="submit" value="Supprimer une reservation">
+                        </td>
+                    </tr>
+                </table>
+                <?php echo $controller->deleteReservation();?>
             </form>
         </td>
     </tr>

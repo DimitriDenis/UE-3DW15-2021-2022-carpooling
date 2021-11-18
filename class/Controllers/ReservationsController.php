@@ -65,12 +65,12 @@ class ReservationsController
 
         // If the form have been submitted :
         if ( isset($_POST['idup']) &&
-            isset($_POST['nbrPassengers'])) {
+            isset($_POST['nbrPassengersup'])) {
             // Update the car :
             $reservationsService = new ReservationsService();
             $isOk = $reservationsService->setReservation(
                 $_POST['idup'],
-                $_POST['nbrPassengers']
+                $_POST['nbrPassengersup']
             );
             if ($isOk){
                 $html = "La réservation à bien été modifiée !";
@@ -90,10 +90,10 @@ class ReservationsController
         $html = '';
 
         // If the form have been submitted :
-        if (isset($_POST['id'])) {
+        if (isset($_POST['iddel'])) {
             // Delete the user :
             $reservationsService = new ReservationsService();
-            $isOk = $reservationsService->deleteReservation($_POST['id']);
+            $isOk = $reservationsService->deleteReservation($_POST['iddel']);
             if ($isOk) {
                 $html = 'La réservation à été supprimé avec succès.';
             } else {
