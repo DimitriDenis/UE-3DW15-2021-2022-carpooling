@@ -167,4 +167,56 @@ class DataBaseService
 
         return $userCars;
     }
+
+
+
+ /**
+     * Create a car.
+     */
+
+    public function createCar(string $brand, string $model, string $color, string $nbrSlots): string
+    {
+        $carId = '';
+
+        $data = [
+            'brand' => $brand,
+            'model' => $model,
+            'color' => $color,
+            'nbrSlots' => $nbrSlots,
+        ];
+        $sql = 'INSERT INTO users (brand, model, color, nbrSlots) VALUES (:brand, :model, :color, :nbrSlots)';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+        if ($isOk) {
+            $carId = $this->connection->lastInsertId();
+        }
+
+        return $carId;
+    }
+
+  /**
+     * Update a car.
+     */
+    public function updateCar(string $brand, string $model, string $color, string $nbrSlots): string
+    {
+        $carId = '';
+
+        $data = [
+            'brand' => $brand,
+            'model' => $model,
+            'color' => $color,
+            'nbrSlots' => $nbrSlots,
+        ];
+        $sql = 'INSERT INTO users (brand, model, color, nbrSlots) VALUES (:brand, :model, :color, :nbrSlots)';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+        if ($isOk) {
+            $carId = $this->connection->lastInsertId();
+        }
+
+        return $carId;
+    }
+
+
 }
+

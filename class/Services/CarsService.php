@@ -29,4 +29,23 @@ class CarsService
 
         return $cars;
     }
+
+      /**
+     * Create or update an user.
+     */
+    public function setCar(?string $id, string $brand, string $model, string $color, string $nbrSlots): string
+    {
+        $carId = '';
+
+        $dataBaseService = new DataBaseService();
+        
+        if (empty($id)) {
+            $carId = $dataBaseService->createCar($brand, $model, $color, $nbrSlots);
+        } else {
+            $dataBaseService->updateCar($id, $brand, $model, $color, $nbrSlots);
+            $carId = $id;
+        }
+
+        return $carId;
+    }
 }
