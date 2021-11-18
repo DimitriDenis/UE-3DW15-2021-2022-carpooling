@@ -33,7 +33,7 @@ class CarsService
       /**
      * Create or update an user.
      */
-    public function setCar(?string $id, string $brand, string $model, string $color, string $nbrSlots): string
+    public function setCar(?string $id, string $brand, string $model, string $color, int $nbrSlots): string
     {
         $carId = '';
 

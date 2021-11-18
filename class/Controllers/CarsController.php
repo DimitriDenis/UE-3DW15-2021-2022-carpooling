@@ -19,20 +19,22 @@ class CarsController
             isset($_POST['color']) &&
             isset($_POST['nbrSlots'])) {
             // Create the user :
-            $slots = (string)$_POST['nbrSlots'];
             $carsService = new CarsService();
             $carsId = $carsService->setCar(
                 null,
                 $_POST['brand'],
                 $_POST['model'],
                 $_POST['color'],
-                $slots
+                $_POST['nbrSlots']
             );
-
-        
-        return $html;
+            if ($carsId){
+                $html .= "La voiture à bien été créée !";
+            }
+            else {
+                $html .= "Erreur, la voiture n'a pas été créée !";
+            }
         }
-
+        return $html;
 
     }    
 

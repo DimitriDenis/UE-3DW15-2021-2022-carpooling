@@ -13,7 +13,6 @@ $carsService = new CarsService();
 $controller = new CarsController();
 echo $controller->getCars();
 echo $controller->createCar();
-$cars = $carsService->getCars();
 ?>
 <table id="first_table">
     <tr>
@@ -53,7 +52,7 @@ $cars = $carsService->getCars();
                             <label for="nbrSlots">Places disponibles</label>
                         </td>
                         <td>
-                            <input type="text" name="nbrSlots">
+                            <input type="number" name="nbrSlots">
                         </td>
                     </tr>
 

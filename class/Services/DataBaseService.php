@@ -184,7 +184,7 @@ class DataBaseService
             'color' => $color,
             'nbrSlots' => $nbrSlots,
         ];
-        $sql = 'INSERT INTO users (brand, model, color, nbrSlots) VALUES (:brand, :model, :color, :nbrSlots)';
+        $sql = 'INSERT INTO cars (brand, model, color, nbrSlots) VALUES (:brand, :model, :color, :nbrSlots)';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
         if ($isOk) {
@@ -207,7 +207,7 @@ class DataBaseService
             'color' => $color,
             'nbrSlots' => $nbrSlots,
         ];
-        $sql = 'INSERT INTO users (brand, model, color, nbrSlots) VALUES (:brand, :model, :color, :nbrSlots)';
+        $sql = 'INSERT INTO cars (brand, model, color, nbrSlots) VALUES (:brand, :model, :color, :nbrSlots)';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
         if ($isOk) {
