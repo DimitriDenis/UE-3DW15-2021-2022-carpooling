@@ -64,7 +64,7 @@ $reservations = $reservationsService->getReservations();
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" value="Modifier l'utilisateur">
+                            <input type="submit" value="Modifier la réservation">
                         </td>
                     </tr>
                 </table>
