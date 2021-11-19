@@ -8,5 +8,5 @@
     <a href="users_crud.php">CRUD utilisateurs</a><br>
     <a href="cars_crud.php">CRUD voitures</a><br>
     <a href="reservations_crud.php">CRUD réservations</a><br>
-    <a href="announcements_crud.php">CRUD annonces</a><br>
+    <a href="ans_crud.php">CRUD annonces</a><br>
 </body>

@@ -308,72 +308,75 @@ class DataBaseService
     }
 
     /**
-     * Create an Announcement
+     * Create an user.
      */
-    public function createAnnouncement(string $Aname, string $departure, string $destination, DateTime $announcementDateTime): string
+    public function createAn(string $title, string $departure, string $destination, DateTime $datea): string
     {
-        $announcementId = '';
+        $anId = '';
 
-        $data =[
-            'Aname' => $Aname,
+        $data = [
+            'title' => $title,
             'departure' => $departure,
             'destination' => $destination,
-            'announcementDateTime' => $announcementDateTime->format(DateTime::RFC3339),
+            'datea' => $datea->format(DateTime::RFC3339),
         ];
-        $sql='INSERT INTO announcements (Aname, departure, destination, announcementDateTime) VALUES (:Aname, :departure, :destination, :announcementDateTime)';
+        $sql = 'INSERT INTO announcements (title, departure, destination, datea) VALUES (:title, :departure, :destination, :datea)';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
         if ($isOk) {
-            $announcementId = $this->connection->lastInsertId();
+            $anId = $this->connection->lastInsertId();
         }
-        return $announcementId;
+
+        return $anId;
     }
 
     /**
-     * Return all announcements
+     * Return all users.
      */
-    public function getAnnouncements(): array 
+    public function getAns(): array
     {
-        $announcements = [];
+        $ans = [];
+
         $sql = 'SELECT * FROM announcements';
         $query = $this->connection->query($sql);
         $results = $query->fetchAll(PDO::FETCH_ASSOC);
         if (!empty($results)) {
-            $announcements = $results;
+            $ans = $results;
         }
 
-        return $announcements;
+        return $ans;
     }
 
     /**
-     * Update an Announcement
+     * Update a user.
      */
-    public function updateAnnouncement(string $id, string $name, string $departure, string $destination, DateTime $date): bool
+    public function updateAn(string $id, string $title, string $departure, string $destination, DateTime $datea): bool
     {
         $isOk = false;
 
         $data = [
             'id' => $id,
-            'name' => $name,
+            'title' => $title,
             'departure' => $departure,
             'destination' => $destination,
-            'date' => $date->format(DateTime::RFC3339),
+            'datea' => $datea->format(DateTime::RFC3339),
         ];
-        $sql = 'UPDATE announcements SET name = :name, departure = :departure, destination = :destination, date = :date WHERE id = :id;'; 
+        $sql = 'UPDATE announcements SET title = :title, departure = :departure, destination = :destination, datea = :datea WHERE id = :id;';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
+
         return $isOk;
     }
 
     /**
-     * Delete an Announcement
+     * Delete a user.
      */
-    public function deleteAnnouncement(string $id): bool
+    public function deleteAn(string $iddel): bool
     {
         $isOk = false;
 
         $data = [
-            'id' => $id,
+            'id' => $iddel,
         ];
         $sql = 'DELETE FROM announcements WHERE id = :id;';
         $query = $this->connection->prepare($sql);
@@ -381,6 +384,7 @@ class DataBaseService
 
         return $isOk;
     }
+
 }
 
 

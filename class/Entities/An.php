@@ -1,37 +1,35 @@
 <?php
 
 namespace App\Entities;
+
 use DateTime;
-class Announcement
+
+class An
 {
     private $id;
-    private $name;
+    private $title;
     private $departure;
     private $destination;
-    private $date;
+    private $datea;
 
     public function getId(): string
     {
         return $this->id;
     }
 
-    public function setId(string $id): self
+    public function setId(string $id): void
     {
         $this->id = $id;
-
-        return $this;
     }
 
-    public function getName(): string
+    public function getTitle(): string
     {
-        return $this->name;
+        return $this->title;
     }
 
-    public function setName(string $name): self
+    public function setTitle(string $title): void
     {
-        $this->name = $name;
-
-        return $this;
+        $this->title = $title;
     }
 
     public function getDeparture(): string
@@ -39,11 +37,9 @@ class Announcement
         return $this->departure;
     }
 
-    public function setDeparture(string $departure): self
+    public function setDeparture(string $departure): void
     {
         $this->departure = $departure;
-
-        return $this;
     }
 
     public function getDestination(): string
@@ -51,21 +47,18 @@ class Announcement
         return $this->destination;
     }
 
-    public function setDestination(string $destination): self
+    public function setDestination($destination): void
     {
         $this->destination = $destination;
-
-        return $this;
     }
 
     public function getDate(): DateTime
     {
-        return $this->date;
+        return $this->datea;
     }
 
-    public function setDate(DateTime $date): void
+    public function setDate(DateTime $datea): void
     {
-        $this->date = $date;
+        $this->datea = $datea;
     }
 }
-?>
