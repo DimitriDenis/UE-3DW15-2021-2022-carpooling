@@ -15,14 +15,14 @@ echo $controller->getAnnouncements();
     <tr>
         <td>
             <p>Création d'une annonce</p>
-            <form method="post" action="announcements_crud.php" name ="annonceCreateForm">
+            <form method="post" action="announcements_crud.php" name ="announcementCreateForm">
                 <table id="in_1">
                     <tr>
                         <td>
-                            <label for="anName">Nom :</label>  
+                            <label for="name">Nom :</label>  
                         </td>
                         <td>
-                            <input type="text" name="anName">
+                            <input type="text" name="name">
                         </td>
                     </tr>
 
@@ -49,7 +49,7 @@ echo $controller->getAnnouncements();
                             <label for="date">Date de départ :</label>
                         </td>
                         <td>
-                            <input type="text" name="anDate" placeholder="format dd-mm-yyyy :">
+                            <input type="text" name="date" placeholder="format dd-mm-yyyy :">
                         </td>
                     </tr>
 
@@ -65,7 +65,7 @@ echo $controller->getAnnouncements();
 
         <td>
             <p>Mise à jour d'une annonce</p>
-            <form method="post" action="announcements_crud.php" name ="annonceUpdateForm">
+            <form method="post" action="announcements_crud.php" name ="announcementUpdateForm">
                 <table id='in-3'>
                     <tr>
                         <td>
@@ -78,10 +78,10 @@ echo $controller->getAnnouncements();
 
                     <tr>
                         <td>
-                            <label for="anNameup">Nom :</label>
+                            <label for="name">Nom :</label>
                         </td>
                         <td>
-                            <input type="text" name="anNameup">
+                            <input type="text" name="name">
                         </td>
                     </tr>
 
@@ -105,10 +105,10 @@ echo $controller->getAnnouncements();
 
                     <tr>
                         <td>
-                            <label for="anDate">Date :</label>
+                            <label for="date">Date :</label>
                         </td>
                         <td>
-                            <input type="text" name="anDate" placeholder="format dd-mm-yyyy :">
+                            <input type="text" name="date" placeholder="format dd-mm-yyyy :">
                         </td>
                     </tr>
 
@@ -124,7 +124,7 @@ echo $controller->getAnnouncements();
 
         <td>
             <p>Supression d'une annonce</p>
-            <form method="post" action="announcements_crud.php" name ="annonceDeleteForm">
+            <form method="post" action="announcements_crud.php" name ="announcementDeleteForm">
                 <table id='in_2'>
                     <tr>
                         <td>
