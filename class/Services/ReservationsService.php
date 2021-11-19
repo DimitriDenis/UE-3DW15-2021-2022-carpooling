@@ -30,7 +30,7 @@ class ReservationsService
      */
     public function getReservations(): array
     {
-        $Reservations = [];
+        $reservations = [];
 
         $dataBaseService = new DataBaseService();
         $reservationsDTO = $dataBaseService->getReservations();
