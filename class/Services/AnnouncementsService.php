@@ -15,9 +15,9 @@ class AnnouncementsService
         $dataBaseService = new DataBaseService();
         $announcementDateTime = new DateTime($Adate);
         if (empty($id)) {
-            $announcementId = $dataBaseService->createUser($Aname, $departure, $destination, $announcementDateTime);
+            $announcementId = $dataBaseService->createAnnouncement($Aname, $departure, $destination, $announcementDateTime);
         } else {
-            $dataBaseService->updateUser($id, $Aname, $departure, $destination, $announcementDateTime);
+            $dataBaseService->updateAnnouncement($id, $Aname, $departure, $destination, $announcementDateTime);
             $announcementId = $id;
         }
         return $announcementId;
