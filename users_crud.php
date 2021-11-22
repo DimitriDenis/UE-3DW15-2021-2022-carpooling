@@ -151,6 +151,19 @@ echo $controller->getUsers();
                     </tr>
 
                     <tr>
+                        <td>
+                            <label for="reservations">Reservation(s) :</label>
+                        </td>
+                        <td>
+                            <?php foreach ($reservations as $reservation): ?>
+                                <?php $reservationName = $reservation->getId() . ' '. $reservation->getNbrPassengers(). ' passagers'; ?>
+                                <input type="checkbox" name="reservations[]" value="<?php echo $reservation->getId(); ?>"><?php echo $reservationName; ?>
+                                <br />
+                            <?php endforeach; ?>
+                        </td>
+                    </tr>
+
+                    <tr>
                         <td colspan="2">
                             <input type="submit" value="Modifier l'utilisateur">
                         </td>
