@@ -7,6 +7,7 @@
 use App\Controllers\UsersController;
 use App\Services\CarsService;
 use App\Services\AnsService;
+use App\Services\ReservationsService;
 
 require __DIR__ . '/vendor/autoload.php';
 include_once 'menu/nav.php';
@@ -17,6 +18,9 @@ $cars = $carsService->getCars();
 
 $ansService = new AnsService();
 $ans = $ansService->getAns();
+
+$reservationsService = new ReservationsService();
+$reservations = $reservationsService->getReservations();
 echo $controller->getUsers();
 ?>
 <br>

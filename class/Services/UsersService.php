@@ -2,8 +2,9 @@
 
 namespace App\Services;
 
-use App\Entities\Car;
 use App\Entities\An;
+use App\Entities\Reservation;
+use App\Entities\Car;
 use App\Entities\User;
 use DateTime;
 
@@ -150,5 +151,44 @@ class UsersService
         }
 
         return $userAns;
+    }
+
+    /**
+     * Create relation bewteen an user and his car.
+     */
+    public function setUserReservation(string $userId, string $reservationId): bool
+    {
+        $isOk = false;
+
+        $dataBaseService = new DataBaseService();
+        $isOk = $dataBaseService->setUserReservation($userId, $reservationId);
+
+        return $isOk;
+    }
+
+    /**
+     * Get cars of given user id.
+     */
+    public function getUserReservations(string $userId): array
+    {
+        $userReservations = [];
+
+        $dataBaseService = new DataBaseService();
+
+        // Get relation users and cars :
+        $usersReservationsDTO = $dataBaseService->getUserReservations($userId);
+        if (!empty($usersReservationsDTO)) {
+            foreach ($usersReservationsDTO as $userReservationDTO) {
+                $reservation = new Car();
+                $reservation->setId($userReservationDTO['id']);
+                $reservation->setBrand($userReservationDTO['brand']);
+                $reservation->setModel($userReservationDTO['model']);
+                $reservation->setColor($userReservationDTO['color']);
+                $reservation->setNbrSlots($userReservationDTO['nbrSlots']);
+                $userReservations[] = $reservation;
+            }
+        }
+
+        return $userReservations;
     }
 }

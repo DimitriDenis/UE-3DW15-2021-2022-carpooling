@@ -471,6 +471,92 @@ class DataBaseService
         return $anReservations;
     }
 
+    /**
+     * Create relation bewteen an user and his Reservation.
+     */
+    public function setUserReservation(string $userId, string $reservationId): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'userId' => $userId,
+            'reservationId' => $reservationId,
+        ];
+        $sql = 'INSERT INTO users_reservations (user_id, reservation_id) VALUES (:userId, :reservationId)';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /**
+     * Get reservations of given announcement id.
+     */
+    public function getUserReservations(string $userId): array
+    {
+        $userReservations = [];
+
+        $data = [
+            'userId' => $userId,
+        ];
+        $sql = '
+            SELECT r.*
+            FROM reservations as r
+            LEFT JOIN users_reservations as ar ON ar.reservation_id = r.id
+            WHERE ar.user_id = :userId';
+        $query = $this->connection->prepare($sql);
+        $query->execute($data);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $userReservations = $results;
+        }
+
+        return $userReservations;
+    }
+
+    /**
+     * Create relation bewteen an user and his annoucements.
+     */
+    public function setUserAn(string $userId, string $anId): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'userId' => $userId,
+            'announceId' => $anId,
+        ];
+        $sql = 'INSERT INTO users_announcements (user_id, announce_id) VALUES (:userId, :announceId)';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /**
+     * Get reservations of given announcement id.
+     */
+    public function getUserAns(string $userId): array
+    {
+        $userAns = [];
+
+        $data = [
+            'userId' => $userId,
+        ];
+        $sql = '
+            SELECT r.*
+            FROM reservations as r
+            LEFT JOIN users_announcements as ar ON ar.announce_id = r.id
+            WHERE ar.user_id = :userId';
+        $query = $this->connection->prepare($sql);
+        $query->execute($data);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $userAns = $results;
+        }
+
+        return $userAns;
+    }
+
 }
 
 

@@ -87,4 +87,16 @@ class User
 
         return $this;
     }
+
+    public function getReservations(): ?array
+    {
+        return $this->reservations;
+    }
+
+    public function setReservations(array $reservations)
+    {
+        $this->reservations = $reservations;
+
+        return $this;
+    }
 }

@@ -69,6 +69,7 @@ class UsersController
         foreach ($users as $user) {
             $carsHtml = '';
             $ansHtml = '';
+            $resHtml = '';
             if (!empty($user->getCars())) {
                 foreach ($user->getCars() as $car) {
                     $carsHtml .= $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor() . ' ';
@@ -80,6 +81,12 @@ class UsersController
                     $ansHtml .= $an->getTitle() . ' ' . $an->getDeparture() . ' ' . $an->getDestination() . ' ';
                 }
             }
+
+            if (!empty($an->getReservations())) {
+                foreach ($an->getReservations() as $reservation) {
+                    $resHtml .= $reservation->getNbrPassengers().' Passager(s)';
+                }
+            }
             $html .=
                 '<tr>'.
                 '<td>'. '#' . $user->getId() . ' ' . '</td>'.
@@ -89,6 +96,7 @@ class UsersController
                 '<td>'. $user->getBirthday()->format('d-m-Y') . ' ' .'</td>'.
                 '<td>'. $carsHtml . ' '. '</td>'.
                 '<td>'. $ansHtml . ' '. '</td>'.
+                '<td>'. $resHtml . ' '. '</td>'.
                 '<tr>';
         }
         $html .= '</table>';
@@ -107,7 +115,9 @@ class UsersController
             isset($_POST['firstname']) &&
             isset($_POST['lastname']) &&
             isset($_POST['email']) &&
-            isset($_POST['birthday'])) {
+            isset($_POST['birthday']) &&
+            isset($_POST['reservations'])) {
+            $userId=$_POST['id'];
             // Update the user :
             $usersService = new UsersService();
             $isOk = $usersService->setUser(
@@ -117,6 +127,12 @@ class UsersController
                 $_POST['email'],
                 $_POST['birthday']
             );
+
+            if (!empty($_POST['reservations'])) {
+                foreach ($_POST['reservations'] as $reservationId) {
+                    $isOk = $usersService->setUserReservation($userId, $reservationId);
+                }
+            }
             if ($isOk) {
                 $html = 'Utilisateur mis à jour avec succès.';
             } else {
