@@ -82,11 +82,7 @@ class UsersController
                 }
             }
 
-            if (!empty($an->getReservations())) {
-                foreach ($an->getReservations() as $reservation) {
-                    $resHtml .= $reservation->getNbrPassengers().' Passager(s)';
-                }
-            }
+            
             $html .=
                 '<tr>'.
                 '<td>'. '#' . $user->getId() . ' ' . '</td>'.

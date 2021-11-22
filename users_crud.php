@@ -138,6 +138,19 @@ echo $controller->getUsers();
                     </tr>
 
                     <tr>
+                        <td>
+                            <label for="ans">Annonce(s) :</label>
+                        </td>
+                        <td>
+                            <?php foreach ($ans as $an): ?>
+                                <?php $anName = $an->getTitle() . ' ' . $an->getDeparture() . ' ' . $an->getDestination(). ' - ' ; ?>
+                                <input type="checkbox" name="ans[]" value="<?php echo $an->getId(); ?>"><?php echo $anName; ?>
+                                <br />
+                            <?php endforeach; ?>
+                        </td>
+                    </tr>
+
+                    <tr>
                         <td colspan="2">
                             <input type="submit" value="Modifier l'utilisateur">
                         </td>
