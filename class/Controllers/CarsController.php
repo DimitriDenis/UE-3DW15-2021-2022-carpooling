@@ -44,7 +44,14 @@ class CarsController
      */
     public function getCars(): string
     {
-        $html = '';
+        $html = '<table class="table_af">' .
+        '<tr>' .
+        '<th>Numéro</th>' .
+        '<th>Marque</th>' .
+        '<th>Modèle</th>' .
+        '<th>Couleur</th>' .
+        '<th>Nombre de places passager</th>' .
+        '</tr>';
 
         // Get all users :
         $carsService = new CarsService();
@@ -54,14 +61,16 @@ class CarsController
         foreach ($cars as $car) {
            
             $html .=
-                '#' . $car->getId() . ' ' .
-                $car->getBrand() . ' ' .
-                $car->getModel() . ' ' .
-                $car->getColor() . ' ' .
-                $car->getNbrSlots(). '<br />';
+                '<tr>'.
+                '<td>'. '#' . $car->getId() . ' ' . '</td>' .
+                '<td>'. $car->getBrand() . ' ' . '</td>' .
+                '<td>'. $car->getModel() . ' ' . '</td>' .
+                '<td>'. $car->getColor() . ' ' . '</td>' .
+                '<td>'. $car->getNbrSlots(). ' ' . '</td>' .
+                '</tr>';
                 
         }
-
+        $html .= '</table>';
         return $html;
     }
 

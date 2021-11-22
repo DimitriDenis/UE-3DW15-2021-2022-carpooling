@@ -7,7 +7,7 @@
 use App\Controllers\CarsController;
 
 require __DIR__ . '/vendor/autoload.php';
-
+include_once 'menu/nav.php';
 $controller = new CarsController();
 echo $controller->getCars();
 ?>

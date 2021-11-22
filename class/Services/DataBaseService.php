@@ -308,7 +308,7 @@ class DataBaseService
     }
 
     /**
-     * Create an user.
+     * Create an announcement.
      */
     public function createAn(string $title, string $departure, string $destination, DateTime $datea): string
     {
@@ -331,7 +331,7 @@ class DataBaseService
     }
 
     /**
-     * Return all users.
+     * Return all announcements.
      */
     public function getAns(): array
     {
@@ -348,7 +348,7 @@ class DataBaseService
     }
 
     /**
-     * Update a user.
+     * Update an announcement.
      */
     public function updateAn(string $id, string $title, string $departure, string $destination, DateTime $datea): bool
     {
@@ -369,7 +369,7 @@ class DataBaseService
     }
 
     /**
-     * Delete a user.
+     * Delete an announcement.
      */
     public function deleteAn(string $iddel): bool
     {
@@ -383,6 +383,92 @@ class DataBaseService
         $isOk = $query->execute($data);
 
         return $isOk;
+    }
+
+    /**
+     * Create relation bewteen an announcement and his car.
+     */
+    public function setAnCar(string $anId, string $carId): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'anId' => $anId,
+            'carId' => $carId,
+        ];
+        $sql = 'INSERT INTO announcements_cars (announcement_id, car_id) VALUES (:anId, :carId)';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /**
+     * Get cars of given announcement id.
+     */
+    public function getAnCars(string $anId): array
+    {
+        $anCars = [];
+
+        $data = [
+            'anId' => $anId,
+        ];
+        $sql = '
+            SELECT c.*
+            FROM cars as c
+            LEFT JOIN announcements_cars as ac ON ac.car_id = c.id
+            WHERE ac.announcement_id = :anId';
+        $query = $this->connection->prepare($sql);
+        $query->execute($data);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $anCars = $results;
+        }
+
+        return $anCars;
+    }
+
+     /**
+     * Create relation bewteen an announcement and his Reservation.
+     */
+    public function setAnReservation(string $anId, string $reservationId): bool
+    {
+        $isOk = false;
+
+        $data = [
+            'anId' => $anId,
+            'reservationId' => $reservationId,
+        ];
+        $sql = 'INSERT INTO announcements_reservations (announcement_id, reservation_id) VALUES (:anId, :reservationId)';
+        $query = $this->connection->prepare($sql);
+        $isOk = $query->execute($data);
+
+        return $isOk;
+    }
+
+    /**
+     * Get reservations of given announcement id.
+     */
+    public function getAnReservations(string $anId): array
+    {
+        $anReservations = [];
+
+        $data = [
+            'anId' => $anId,
+        ];
+        $sql = '
+            SELECT r.*
+            FROM reservations as r
+            LEFT JOIN announcements_reservations as ar ON ar.reservation_id = r.id
+            WHERE ar.announcement_id = :anId';
+        $query = $this->connection->prepare($sql);
+        $query->execute($data);
+        $results = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)) {
+            $anReservations = $results;
+        }
+
+        return $anReservations;
     }
 
 }

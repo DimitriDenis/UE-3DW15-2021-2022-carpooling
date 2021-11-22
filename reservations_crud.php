@@ -8,7 +8,7 @@ use App\Controllers\ReservationsController;
 use App\Services\ReservationsService;
 
 require __DIR__ . '/vendor/autoload.php';
-
+include_once 'menu/nav.php';
 $controller = new ReservationsController();
 echo $controller->getReservations();
 

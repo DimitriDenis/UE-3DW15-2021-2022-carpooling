@@ -8,12 +8,12 @@ use App\Controllers\UsersController;
 use App\Services\CarsService;
 
 require __DIR__ . '/vendor/autoload.php';
-
+include_once 'menu/nav.php';
 $controller = new UsersController();
-echo $controller->getUsers();
 
 $carsService = new CarsService();
 $cars = $carsService->getCars();
+echo $controller->getUsers();
 ?>
 <br>
 <table id="first_table">
@@ -64,7 +64,7 @@ $cars = $carsService->getCars();
                         </td>
                         <td>
                             <?php foreach ($cars as $car): ?>
-                                <?php $carName = $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor(). ' ' . $car->getNbrSlots(); ?>
+                                <?php $carName = $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor(). ' - ' . $car->getNbrSlots().' place(s)'; ?>
                                 <input type="checkbox" name="cars[]" value="<?php echo $car->getId(); ?>"><?php echo $carName; ?>
                                 <br />
                             <?php endforeach; ?>

@@ -51,7 +51,15 @@ class UsersController
      */
     public function getUsers(): string
     {
-        $html = '';
+        $html = '<table class="table_af">' .
+        '<tr>' .
+        '<th>Numéro</th>' .
+        '<th>Prénom</th>' .
+        '<th>Nom</th>' .
+        '<th>Adresse mail</th>' .
+        '<th>Date de naissance</th>' .
+        '<th>Voiture</th>' .
+        '</tr>';
 
         // Get all users :
         $usersService = new UsersService();
@@ -66,14 +74,16 @@ class UsersController
                 }
             }
             $html .=
-                '#' . $user->getId() . ' ' .
-                $user->getFirstname() . ' ' .
-                $user->getLastname() . ' ' .
-                $user->getEmail() . ' ' .
-                $user->getBirthday()->format('d-m-Y') . ' ' .
-                $carsHtml . '<br />';
+                '<tr>'.
+                '<td>'. '#' . $user->getId() . ' ' . '</td>'.
+                '<td>'. $user->getFirstname() . ' ' .'</td>'.
+                '<td>'. $user->getLastname() . ' ' .'</td>'.
+                '<td>'. $user->getEmail() . ' ' .'</td>'.
+                '<td>'. $user->getBirthday()->format('d-m-Y') . ' ' .'</td>'.
+                '<td>'. $carsHtml . ' '. '</td>'.
+                '<tr>';
         }
-
+        $html .= '</table>';
         return $html;
     }
 

@@ -61,4 +61,28 @@ class An
     {
         $this->datea = $datea;
     }
+
+    public function getCars(): ?array
+    {
+        return $this->cars;
+    }
+
+    public function setCars(array $cars)
+    {
+        $this->cars = $cars;
+
+        return $this;
+    }
+
+    public function getReservations(): ?array
+    {
+        return $this->reservations;
+    }
+
+    public function setReservations(array $reservations)
+    {
+        $this->reservations = $reservations;
+
+        return $this;
+    }
 }

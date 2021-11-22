@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Nov 19, 2021 at 04:15 PM
+-- Generation Time: Nov 22, 2021 at 12:56 PM
 -- Server version: 8.0.22
 -- PHP Version: 7.4.20
 
@@ -54,6 +54,18 @@ CREATE TABLE `announcements_cars` (
   `car_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `announcements_cars`
+--
+
+INSERT INTO `announcements_cars` (`announcement_id`, `car_id`) VALUES
+(1, 3),
+(4, 2),
+(9, 1),
+(10, 2),
+(11, 2),
+(12, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -61,9 +73,19 @@ CREATE TABLE `announcements_cars` (
 --
 
 CREATE TABLE `announcements_reservations` (
-  `announce_id` int NOT NULL,
+  `announcement_id` int NOT NULL,
   `reservation_id` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `announcements_reservations`
+--
+
+INSERT INTO `announcements_reservations` (`announcement_id`, `reservation_id`) VALUES
+(1, 2),
+(4, 3),
+(10, 2),
+(12, 2);
 
 -- --------------------------------------------------------
 
@@ -88,9 +110,7 @@ INSERT INTO `cars` (`id`, `brand`, `model`, `color`, `nbrSlots`) VALUES
 (2, 'Huandai', 'Getz', 'Rouge', 5),
 (3, 'Mercedes', 'Classe C', 'Noire', 4),
 (4, 'Renaut', 'Zoé', 'Bleu', 2),
-(5, 'Tesla', 'Y', 'Red', 2),
-(6, 'Tesla', 'X', 'Brown', 8),
-(7, 'AKa', 'XaW', 'Noir', 3);
+(5, 'Tesla', 'Y', 'Red', 2);
 
 -- --------------------------------------------------------
 
@@ -136,13 +156,7 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `birthday`) VALUES
 (2, 'Albert', 'Dupond', 'sonemail@gmail.com', '1985-11-08 00:00:00'),
 (3, 'Thomas', 'Dumoulin', 'sonemail2@gmail.com', '1985-10-08 00:00:00'),
 (4, 'Adrien', 'Marques', 'marqueslaw19@gmail.com', '2000-12-19 00:00:00'),
-(12, 'Dimitri', 'Denis', 'dimdim@gmail.com', '2020-12-18 00:00:00'),
-(21, 'test', 'test', 'tset', '2021-12-19 00:00:00'),
-(22, 'test', 'testes', 'teststst', '2022-01-15 00:00:00'),
-(23, 'test', 'test', 'setse', '2021-12-19 00:00:00'),
-(24, 'test', 'testes', 'testse', '2021-12-19 00:00:00'),
-(25, 'dzqd', 'zqdqd', 'zqdqd', '2021-12-19 00:00:00'),
-(26, 'est', 'set', 'ets', '2021-12-19 00:00:00');
+(12, 'Dimitri', 'Denis', 'dimdim@gmail.com', '2020-12-18 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -176,7 +190,10 @@ INSERT INTO `users_cars` (`user_id`, `car_id`) VALUES
 (2, 3),
 (3, 4),
 (4, 2),
-(12, 3);
+(8, 4),
+(9, 1),
+(12, 3),
+(27, 1);
 
 -- --------------------------------------------------------
 
@@ -209,7 +226,7 @@ ALTER TABLE `announcements_cars`
 -- Indexes for table `announcements_reservations`
 --
 ALTER TABLE `announcements_reservations`
-  ADD PRIMARY KEY (`announce_id`,`reservation_id`);
+  ADD PRIMARY KEY (`announcement_id`,`reservation_id`);
 
 --
 -- Indexes for table `cars`
@@ -255,25 +272,25 @@ ALTER TABLE `users_reservations`
 -- AUTO_INCREMENT for table `announcements`
 --
 ALTER TABLE `announcements`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `cars`
 --
 ALTER TABLE `cars`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

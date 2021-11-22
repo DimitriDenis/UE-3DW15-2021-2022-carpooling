@@ -17,7 +17,8 @@ class AnsController
         if (isset($_POST['title']) &&
             isset($_POST['departure']) &&
             isset($_POST['destination']) &&
-            isset($_POST['datea'])) {
+            isset($_POST['datea']) &&
+            isset($_POST['cars'])) {
             // Create the user :
             $ansService = new AnsService();
             $anId = $ansService->setAn(
@@ -27,7 +28,13 @@ class AnsController
                 $_POST['destination'],
                 $_POST['datea']
             );
-            if ($anId) {
+            $isOk = True;
+            if (!empty($_POST['cars'])) {
+                foreach ($_POST['cars'] as $carId) {
+                    $isOk = $ansService->setAnCar($anId, $carId);
+                }
+            }
+            if ($anId && $isOk) {
                 $html = 'Utilisateur créé avec succès.';
             } else {
                 $html = 'Erreur lors de la création de l\'utilisateur.';
@@ -42,27 +49,52 @@ class AnsController
      */
     public function getAns(): string
     {
-        $html = '';
+        $html = '<table class="table_af">' .
+        '<tr>' .
+        '<th>Numéro</th>' .
+        '<th>Titre</th>' .
+        '<th>Départ</th>' .
+        '<th>Arrivée</th>' .
+        '<th>Date</th>' .
+        '<th>Voiture</th>' .
+        '<th>Réservée par</th>' .
+        '</tr>';
 
-        // Get all users :
+        // Get all ans :
         $ansService = new AnsService();
         $ans = $ansService->getAns();
 
         // Get html :
         foreach ($ans as $an) {
-            $html .=
-                '#' . $an->getId() . ' ' .
-                $an->getTitle() . ' ' .
-                $an->getDeparture() . ' ' .
-                $an->getDestination() . ' ' .
-                $an->getDate()->format('d-m-Y') . '<br />';
+            $carsHtml = '';
+            $resHtml = '';
+            if (!empty($an->getCars())) {
+                foreach ($an->getCars() as $car) {
+                    $carsHtml .= $car->getBrand() . ' ' . $car->getModel();
+                }
+            }
+            if (!empty($an->getReservations())) {
+                foreach ($an->getReservations() as $reservation) {
+                    $resHtml .= $reservation->getNbrPassengers().' Passager(s)';
+                }
+            }
+            $html .= 
+                '<tr>'.
+                '<td>'. '#' . $an->getId() . ' ' . '</td>'.
+                '<td>'. $an->getTitle() . ' ' . '</td>'.
+                '<td>'.$an->getDeparture() . ' ' . '</td>'.
+                '<td>'.$an->getDestination() . ' ' . '</td>'.
+                '<td>'.$an->getDate()->format('d-m-Y') . ' ' . '</td>'.
+                '<td>'.$carsHtml . ' ' . '</td>'.
+                '<td>'.$resHtml .'<br />'. '</td>'.
+                '</tr>';
         }
-
+        $html .= '</table>';
         return $html;
     }
 
     /**
-     * Update the user.
+     * Update the An.
      */
     public function updateAn(): string
     {
@@ -73,7 +105,9 @@ class AnsController
             isset($_POST['titleup']) &&
             isset($_POST['departureup']) &&
             isset($_POST['destinationup']) &&
-            isset($_POST['dateup'])) {
+            isset($_POST['dateup']) &&
+            isset($_POST['reservations'])) {
+            $anId=$_POST['idup'];
             // Update the user :
             $ansService = new AnsService();
             $isOk = $ansService->setAn(
@@ -83,10 +117,15 @@ class AnsController
                 $_POST['destinationup'],
                 $_POST['dateup']
             );
+            if (!empty($_POST['reservations'])) {
+                foreach ($_POST['reservations'] as $reservationId) {
+                    $isOk = $ansService->setAnReservation($anId, $reservationId);
+                }
+            }
             if ($isOk) {
-                $html = 'Utilisateur mis à jour avec succès.';
+                $html = 'Annonce mise à jour avec succès.';
             } else {
-                $html = 'Erreur lors de la mise à jour de l\'utilisateur.';
+                $html = 'Erreur lors de la mise à jour de l\'annonce.';
             }
         }
 

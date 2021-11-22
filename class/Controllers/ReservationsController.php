@@ -38,7 +38,11 @@ class ReservationsController
      */
     public function getReservations(): string
     {
-        $html = '';
+        $html = '<table class="table_af">' .
+        '<tr>' .
+        '<th>Numéro</th>' .
+        '<th>Nombre de passager(s)</th>' .
+        '</tr>';
 
         // Get all users :
         $reservationsService = new ReservationsService();
@@ -48,11 +52,13 @@ class ReservationsController
         foreach ($reservations as $reservation) {
            
             $html .=
-                '#' . $reservation->getId() . ' ' .
-                $reservation->getNbrPassengers(). '<br />';
+                '<tr>'.
+                '<td>'. '#' . $reservation->getId() . ' ' . '</td>' .
+                '<td>'. $reservation->getNbrPassengers(). ' ' . '</td>' .
+                '</tr>';
                 
         }
-
+        $html .= '</table>';
         return $html;
     }
 

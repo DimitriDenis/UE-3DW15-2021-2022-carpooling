@@ -1,12 +1,11 @@
-<head>
-    <meta charset="utf-8">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
-    <title>Page de modification des réservations</title>
-</head>
-<body>
-    <p>Que voulez-vous faire ?</p><br>
-    <a href="users_crud.php">CRUD utilisateurs</a><br>
-    <a href="cars_crud.php">CRUD voitures</a><br>
-    <a href="reservations_crud.php">CRUD réservations</a><br>
-    <a href="ans_crud.php">CRUD annonces</a><br>
-</body>
+
+    <?php include_once 'menu/nav.php';?>
+    <p>Bienvenue sur le projet 'Carpooling' de Dimitri Denis et Adrien Marques</p>
+    <p>Ce projet est une application de co-voiturage développée en LPMI : DEV WEB !</p>
+    <p>
+        Le lien "Utilisateurs" est le "CRUD" (Create Read Update Delete) qui sert à créer lire mettre à jour ou supprimer un utilisateur<br>
+        Le lien "Voitures" est le "CRUD" (Create Read Update Delete) qui sert à créer lire mettre à jour ou supprimer une voiture<br>
+        Le lien "Réservations" est le "CRUD" (Create Read Update Delete) qui sert à créer lire mettre à jour ou supprimer une réservation<br>
+        Le lien "Annonces" est le "CRUD" (Create Read Update Delete) qui sert à créer lire mettre à jour ou supprimer une annonce<br>
+    </p>
+    <?php include_once 'menu/footer.php' ;?>

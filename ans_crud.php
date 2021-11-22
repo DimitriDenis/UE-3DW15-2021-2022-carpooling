@@ -5,10 +5,16 @@
 </head>
 <?php
 use App\Controllers\AnsController;
+use App\Services\CarsService;
+use App\Services\ReservationsService;
 
 require __DIR__ . '/vendor/autoload.php';
-
+include_once 'menu/nav.php';
 $controller = new AnsController();
+$carsService = new CarsService();
+$cars = $carsService->getCars();
+$reservationsService = new ReservationsService;
+$reservations = $reservationsService->getReservations();
 echo $controller->getAns();
 ?>
 <table id="first_table">
@@ -50,6 +56,19 @@ echo $controller->getAns();
                         </td>
                         <td>
                             <input type="text" name="datea" placeholder="format dd-mm-yyyy :">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="cars">Voiture :</label>
+                        </td>
+                        <td>
+                            <?php foreach ($cars as $car): ?>
+                                <?php $carName = $car->getBrand() . ' ' . $car->getModel() . '' . $car->getColor(). ' - ' . $car->getNbrSlots().' place(s)'; ?>
+                                <input type="checkbox" name="cars[]" value="<?php echo $car->getId(); ?>"><?php echo $carName; ?>
+                                <br />
+                            <?php endforeach; ?>
                         </td>
                     </tr>
 
@@ -109,6 +128,19 @@ echo $controller->getAns();
                         </td>
                         <td>
                             <input type="text" name="dateup" placeholder="format dd-mm-yyyy :">
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <label for="reservation">Réservation :</label>
+                        </td>
+                        <td>
+                        <?php foreach ($reservations as $reservation): ?>
+                                <?php $reservationName ='#'. $reservation->getId() . ' Nombre de passager(s) ' . $reservation->getnbrPassengers(); ?>
+                                <input type="checkbox" name="reservations[]" value="<?php echo $reservation->getId(); ?>"><?php echo $reservationName; ?>
+                                <br />
+                            <?php endforeach; ?>
                         </td>
                     </tr>
 
