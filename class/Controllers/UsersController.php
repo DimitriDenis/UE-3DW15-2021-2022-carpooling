@@ -68,9 +68,16 @@ class UsersController
         // Get html :
         foreach ($users as $user) {
             $carsHtml = '';
+            $ansHtml = '';
             if (!empty($user->getCars())) {
                 foreach ($user->getCars() as $car) {
                     $carsHtml .= $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor() . ' ';
+                }
+            }
+
+            if (!empty($user->getAns())) {
+                foreach ($user->getAns() as $an) {
+                    $ansHtml .= $an->getTitle() . ' ' . $an->getDeparture() . ' ' . $an->getDestination() . ' ';
                 }
             }
             $html .=
@@ -81,6 +88,7 @@ class UsersController
                 '<td>'. $user->getEmail() . ' ' .'</td>'.
                 '<td>'. $user->getBirthday()->format('d-m-Y') . ' ' .'</td>'.
                 '<td>'. $carsHtml . ' '. '</td>'.
+                '<td>'. $ansHtml . ' '. '</td>'.
                 '<tr>';
         }
         $html .= '</table>';

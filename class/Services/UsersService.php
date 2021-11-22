@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Entities\Car;
+use App\Entities\An;
 use App\Entities\User;
 use DateTime;
 
@@ -110,5 +111,44 @@ class UsersService
         }
 
         return $userCars;
+    }
+
+    /**
+     * Create relation bewteen an user and his car.
+     */
+    public function setUserAn(string $userId, string $anId): bool
+    {
+        $isOk = false;
+
+        $dataBaseService = new DataBaseService();
+        $isOk = $dataBaseService->setUserAn($userId, $anId);
+
+        return $isOk;
+    }
+
+    /**
+     * Get cars of given user id.
+     */
+    public function getUserAns(string $userId): array
+    {
+        $userAns = [];
+
+        $dataBaseService = new DataBaseService();
+
+        // Get relation users and cars :
+        $usersAnsDTO = $dataBaseService->getUserAns($userId);
+        if (!empty($usersAnsDTO)) {
+            foreach ($usersAnsDTO as $userAnDTO) {
+                $an = new Car();
+                $an->setId($userAnDTO['id']);
+                $an->setBrand($userAnDTO['brand']);
+                $an->setModel($userAnDTO['model']);
+                $an->setColor($userAnDTO['color']);
+                $an->setNbrSlots($userAnDTO['nbrSlots']);
+                $userAns[] = $an;
+            }
+        }
+
+        return $userAns;
     }
 }
