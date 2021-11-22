@@ -35,7 +35,7 @@ echo $controller->getUsers();
                             <label for="firstname">Prénom :</label>  
                         </td>
                         <td>
-                            <input type="text" name="firstname">
+                            <input type="text" class="form-control" name="firstname">
                         </td>
                     </tr>
 
@@ -44,7 +44,7 @@ echo $controller->getUsers();
                             <label for="lastname">Nom :</label>
                         </td>
                         <td>
-                            <input type="text" name="lastname">
+                            <input type="text" class="form-control" name="lastname">
                         </td>
                     </tr>
 
@@ -53,7 +53,7 @@ echo $controller->getUsers();
                             <label for="email">Email :</label>
                         </td>
                         <td>
-                            <input type="text" name="email">
+                            <input type="text" class="form-control" name="email">
                         </td>
                     </tr>
 
@@ -62,7 +62,7 @@ echo $controller->getUsers();
                             <label for="birthday">Date d'anniversaire :</label>
                         </td>
                         <td>
-                            <input type="text" name="birthday" placeholder="format dd-mm-yyyy :">
+                            <input type="text" class="form-control" name="birthday" placeholder="format dd-mm-yyyy :">
                         </td>
                     </tr>
 
@@ -81,7 +81,7 @@ echo $controller->getUsers();
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" value="Créer un utilisateur">
+                            <input type="submit" class="form-control" value="Créer un utilisateur">
                         </td>
                     </tr>          
                 </table>
@@ -97,7 +97,7 @@ echo $controller->getUsers();
                             <label for="id">Id :</label>
                         </td>
                         <td>
-                            <input type="text" name="id">
+                            <input type="text" class="form-control" name="id">
                         </td>
                     </tr>
 
@@ -106,7 +106,7 @@ echo $controller->getUsers();
                             <label for="firstname">Prénom :</label>
                         </td>
                         <td>
-                            <input type="text" name="firstname">
+                            <input type="text" class="form-control" name="firstname">
                         </td>
                     </tr>
 
@@ -115,7 +115,7 @@ echo $controller->getUsers();
                             <label for="lastname">Nom :</label>
                         </td>
                         <td>
-                            <input type="text" name="lastname">
+                            <input type="text" class="form-control" name="lastname">
                         </td>
                     </tr>
 
@@ -124,7 +124,7 @@ echo $controller->getUsers();
                             <label for="email">Email :</label>
                         </td>
                         <td>
-                            <input type="text" name="email">
+                            <input type="text" class="form-control" name="email">
                         </td>
                     </tr>
 
@@ -133,7 +133,7 @@ echo $controller->getUsers();
                             <label for="birthday">Date d'anniversaire :</label>
                         </td>
                         <td>
-                            <input type="text" name="birthday" placeholder="format dd-mm-yyyy :">
+                            <input type="text" class="form-control" name="birthday" placeholder="format dd-mm-yyyy :">
                         </td>
                     </tr>
 
@@ -165,7 +165,7 @@ echo $controller->getUsers();
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" value="Modifier l'utilisateur">
+                            <input type="submit" class="form-control" value="Modifier l'utilisateur">
                         </td>
                     </tr>
                 </table>
@@ -181,13 +181,13 @@ echo $controller->getUsers();
                             <label for="id">Id :</label>
                         </td>
                         <td>
-                            <input type="text" name="iddel">
+                            <input type="text" class="form-control" name="iddel">
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" value="Supprimer un utilisateur">
+                            <input type="submit" class="form-control" value="Supprimer un utilisateur">
                         </td>
                     </tr>
                 </table>

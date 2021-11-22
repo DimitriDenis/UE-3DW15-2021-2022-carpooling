@@ -55,6 +55,12 @@ class UsersService
                 $cars = $this->getUserCars($userDTO['id']);
                 $user->setCars($cars);
 
+                $ans = $this->getUserAns($userDTO['id']);
+                $user->setAns($ans);
+
+                $reservations = $this->getUserReservations($userDTO['id']);
+                $user->setReservations($reservations);
+
                 $users[] = $user;
             }
         }
@@ -140,12 +146,15 @@ class UsersService
         $usersAnsDTO = $dataBaseService->getUserAns($userId);
         if (!empty($usersAnsDTO)) {
             foreach ($usersAnsDTO as $userAnDTO) {
-                $an = new Car();
+                $an = new An();
                 $an->setId($userAnDTO['id']);
-                $an->setBrand($userAnDTO['brand']);
-                $an->setModel($userAnDTO['model']);
-                $an->setColor($userAnDTO['color']);
-                $an->setNbrSlots($userAnDTO['nbrSlots']);
+                $an->setTitle($userAnDTO['title']);
+                $an->setDeparture($userAnDTO['departure']);
+                $an->setDestination($userAnDTO['destination']);
+                $date = new DateTime($userAnDTO['datea']);
+                if ($date !== false) {
+                    $an->setDate($date);
+                }
                 $userAns[] = $an;
             }
         }
@@ -179,12 +188,9 @@ class UsersService
         $usersReservationsDTO = $dataBaseService->getUserReservations($userId);
         if (!empty($usersReservationsDTO)) {
             foreach ($usersReservationsDTO as $userReservationDTO) {
-                $reservation = new Car();
+                $reservation = new Reservation();
                 $reservation->setId($userReservationDTO['id']);
-                $reservation->setBrand($userReservationDTO['brand']);
-                $reservation->setModel($userReservationDTO['model']);
-                $reservation->setColor($userReservationDTO['color']);
-                $reservation->setNbrSlots($userReservationDTO['nbrSlots']);
+                $reservation->setNbrPassengers($userReservationDTO['nbrPassengers']);
                 $userReservations[] = $reservation;
             }
         }

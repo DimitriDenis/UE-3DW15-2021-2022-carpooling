@@ -523,9 +523,9 @@ class DataBaseService
 
         $data = [
             'userId' => $userId,
-            'announceId' => $anId,
+            'anId' => $anId,
         ];
-        $sql = 'INSERT INTO users_announcements (user_id, announce_id) VALUES (:userId, :announceId)';
+        $sql = 'INSERT INTO users_announcements (user_id, announce_id) VALUES (:userId, :anId)';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 
@@ -543,10 +543,10 @@ class DataBaseService
             'userId' => $userId,
         ];
         $sql = '
-            SELECT r.*
-            FROM reservations as r
-            LEFT JOIN users_announcements as ar ON ar.announce_id = r.id
-            WHERE ar.user_id = :userId';
+            SELECT a.*
+            FROM announcements as a
+            LEFT JOIN users_announcements as ua ON ua.announce_id = a.id
+            WHERE ua.user_id = :userId';
         $query = $this->connection->prepare($sql);
         $query->execute($data);
         $results = $query->fetchAll(PDO::FETCH_ASSOC);

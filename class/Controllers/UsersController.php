@@ -59,6 +59,8 @@ class UsersController
         '<th>Adresse mail</th>' .
         '<th>Date de naissance</th>' .
         '<th>Voiture</th>' .
+        '<th>Annonce</th>' .
+        '<th>Réservation</th>' .
         '</tr>';
 
         // Get all users :
@@ -72,13 +74,19 @@ class UsersController
             $resHtml = '';
             if (!empty($user->getCars())) {
                 foreach ($user->getCars() as $car) {
-                    $carsHtml .= $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor() . ' ';
+                    $carsHtml .= '#'.$car->getBrand() . '-' . $car->getModel() . ' ' . $car->getColor() . ' ';
                 }
             }
 
             if (!empty($user->getAns())) {
                 foreach ($user->getAns() as $an) {
-                    $ansHtml .= $an->getTitle() . ' ' . $an->getDeparture() . ' ' . $an->getDestination() . ' ';
+                    $ansHtml .= '#'.$an->getTitle() . '| ' . $an->getDeparture() . '-' . $an->getDestination() . ' ';
+                }
+            }
+
+            if (!empty($user->getReservations())) {
+                foreach ($user->getReservations() as $reservation) {
+                    $resHtml .= "#".$reservation->getId() . ' - ' . $reservation->getNbrPassengers(). ' passager(s) ';
                 }
             }
 
@@ -127,6 +135,11 @@ class UsersController
             if (!empty($_POST['reservations'])) {
                 foreach ($_POST['reservations'] as $reservationId) {
                     $isOk = $usersService->setUserReservation($userId, $reservationId);
+                }
+            }
+            if (!empty($_POST['ans'])) {
+                foreach ($_POST['ans'] as $anId) {
+                    $isOk = $usersService->setUserAn($userId, $anId);
                 }
             }
             if ($isOk) {
