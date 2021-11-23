@@ -52,7 +52,7 @@ class AnsController
         $html = '<table class="table_af">' .
         '<tr>' .
         '<th>Numéro</th>' .
-        '<th>Titre</th>' .
+        '<th>Prix</th>' .
         '<th>Départ</th>' .
         '<th>Arrivée</th>' .
         '<th>Date</th>' .

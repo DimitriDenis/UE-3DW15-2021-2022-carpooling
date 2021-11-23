@@ -14,11 +14,13 @@ class ReservationsController
         $html = '';
 
         // If the form have been submitted :
-        if (isset($_POST['nbrPassengers'])) {
+        if (isset($_POST['title']) &&
+            isset($_POST['nbrPassengers'])) {
             // Create the user :
             $reservationsService = new ReservationsService();
             $reservationsId = $reservationsService->setReservation(
                 null,
+                $_POST['title'],
                 $_POST['nbrPassengers']
             );
             if ($reservationsId){
@@ -41,6 +43,7 @@ class ReservationsController
         $html = '<table class="table_af">' .
         '<tr>' .
         '<th>Numéro</th>' .
+        '<th>Nom</th>' .
         '<th>Nombre de passager(s)</th>' .
         '</tr>';
 
@@ -54,6 +57,7 @@ class ReservationsController
             $html .=
                 '<tr>'.
                 '<td>'. '#' . $reservation->getId() . ' ' . '</td>' .
+                '<td>'. $reservation->getTitle(). ' ' . '</td>' .
                 '<td>'. $reservation->getNbrPassengers(). ' ' . '</td>' .
                 '</tr>';
                 
@@ -70,12 +74,14 @@ class ReservationsController
         $html = '';
 
         // If the form have been submitted :
-        if ( isset($_POST['idup']) &&
+        if (isset($_POST['idup']) &&
+            isset($_POST['titleup']) &&
             isset($_POST['nbrPassengersup'])) {
             // Update the car :
             $reservationsService = new ReservationsService();
             $isOk = $reservationsService->setReservation(
                 $_POST['idup'],
+                $_POST['titleup'],
                 $_POST['nbrPassengersup']
             );
             if ($isOk){

@@ -237,14 +237,15 @@ class DataBaseService
      * Create a reservation.
      */
 
-    public function createReservation(string $nbrPassengers): string
+    public function createReservation(string $title, string $nbrPassengers): string
     {
         $reservationId = '';
 
         $data = [
+            'title' => $title,
             'nbrPassengers' => $nbrPassengers,
         ];
-        $sql = 'INSERT INTO reservations (nbrPassengers) VALUES (:nbrPassengers)';
+        $sql = 'INSERT INTO reservations (title, nbrPassengers) VALUES (:title, :nbrPassengers)';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
         if ($isOk) {
@@ -275,15 +276,16 @@ class DataBaseService
   /**
      * Update a reservation.
      */
-    public function updateReservation(string $idup, string $nbrPassengers): bool
+    public function updateReservation(string $idup, string $titleup, string $nbrPassengersup): bool
     {
         $isOk = false;
 
         $data = [
             'id' => $idup,
-            'nbrPassengers' => $nbrPassengers,
+            'titleup' => $titleup,
+            'nbrPassengersup' => $nbrPassengersup,
         ];
-        $sql = 'UPDATE reservations SET nbrPassengers = :nbrPassengers WHERE id = :id;';
+        $sql = 'UPDATE reservations SET titleup = :titleup, nbrPassengersup = :nbrPassengersup WHERE id = :id;';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
         
@@ -310,17 +312,17 @@ class DataBaseService
     /**
      * Create an announcement.
      */
-    public function createAn(string $title, string $departure, string $destination, DateTime $datea): string
+    public function createAn(string $price, string $departure, string $destination, DateTime $datea): string
     {
         $anId = '';
 
         $data = [
-            'title' => $title,
+            'price' => $price,
             'departure' => $departure,
             'destination' => $destination,
             'datea' => $datea->format(DateTime::RFC3339),
         ];
-        $sql = 'INSERT INTO announcements (title, departure, destination, datea) VALUES (:title, :departure, :destination, :datea)';
+        $sql = 'INSERT INTO announcements (price, departure, destination, datea) VALUES (:price, :departure, :destination, :datea)';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
         if ($isOk) {
@@ -350,18 +352,18 @@ class DataBaseService
     /**
      * Update an announcement.
      */
-    public function updateAn(string $id, string $title, string $departure, string $destination, DateTime $datea): bool
+    public function updateAn(string $id, string $price, string $departure, string $destination, DateTime $datea): bool
     {
         $isOk = false;
 
         $data = [
             'id' => $id,
-            'title' => $title,
+            'price' => $price,
             'departure' => $departure,
             'destination' => $destination,
             'datea' => $datea->format(DateTime::RFC3339),
         ];
-        $sql = 'UPDATE announcements SET title = :title, departure = :departure, destination = :destination, datea = :datea WHERE id = :id;';
+        $sql = 'UPDATE announcements SET price = :price, departure = :departure, destination = :destination, datea = :datea WHERE id = :id;';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
 

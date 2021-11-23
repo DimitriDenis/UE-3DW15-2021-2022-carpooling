@@ -110,10 +110,10 @@ CREATE TABLE `reservations` (
 --
 
 INSERT INTO `reservations` (`id`, `title`, `nbrPassengers`) VALUES
-(1, '', 2),
-(2, '', 3),
-(3, '', 4),
-(5, '', 6);
+(1, 'Adrien', 2),
+(2, 'Dimitri', 3),
+(3, 'Bastien', 4),
+(5, 'Stéphanie', 6);
 
 -- --------------------------------------------------------
 

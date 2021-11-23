@@ -23,6 +23,14 @@ $reservations = $reservationsService->getReservations();
                 <table id="in_1">
                     <tr>
                         <td>
+                            <label for="name">Nom :</label>  
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="title">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
                             <label for="nbrPassengers">Nombre de passagers :</label>  
                         </td>
                         <td>
@@ -52,6 +60,16 @@ $reservations = $reservationsService->getReservations();
                             <input type="text" class="form-control" name="idup">
                         </td>
                     </tr>
+
+                    <tr>
+                        <td>
+                            <label for="name">Nom :</label>  
+                        </td>
+                        <td>
+                            <input type="text" class="form-control" name="titleup">
+                        </td>
+                    </tr>
+                    <tr>
 
                     <tr>
                         <td>

@@ -148,7 +148,7 @@ class UsersService
             foreach ($usersAnsDTO as $userAnDTO) {
                 $an = new An();
                 $an->setId($userAnDTO['id']);
-                $an->setTitle($userAnDTO['title']);
+                $an->setPrice($userAnDTO['price']);
                 $an->setDeparture($userAnDTO['departure']);
                 $an->setDestination($userAnDTO['destination']);
                 $date = new DateTime($userAnDTO['datea']);

@@ -9,16 +9,16 @@ class ReservationsService
     /**
     * Create or update a car.
     */
-    public function setReservation(?string $id, string $nbrPassengers): string
+    public function setReservation(?string $id,string $title, string $nbrPassengers): string
     {
         $reservationId = '';
 
         $dataBaseService = new DataBaseService();
         
         if (empty($id)) {
-            $reservationId = $dataBaseService->createReservation($nbrPassengers);
+            $reservationId = $dataBaseService->createReservation($title, $nbrPassengers);
         } else {
-            $dataBaseService->updateReservation($id, $nbrPassengers);
+            $dataBaseService->updateReservation($id, $title, $nbrPassengers);
             $reservationId = $id;
         }
 
@@ -38,6 +38,7 @@ class ReservationsService
             foreach ($reservationsDTO as $reservationDTO) {
                 $reservation = new Reservation();
                 $reservation->setId($reservationDTO['id']);
+                $reservation->setTitle($reservationDTO['title']);
                 $reservation->setNbrPassengers($reservationDTO['nbrPassengers']);
                 $reservations[] = $reservation;
             }

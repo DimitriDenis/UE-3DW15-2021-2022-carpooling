@@ -97,10 +97,10 @@ echo $controller->getAns();
 
                     <tr>
                         <td>
-                            <label for="name">Nom :</label>
+                            <label for="name">Prix :</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="titleup">
+                            <input type="text" class="form-control" name="price">
                         </td>
                     </tr>
 
@@ -137,7 +137,7 @@ echo $controller->getAns();
                         </td>
                         <td>
                         <?php foreach ($reservations as $reservation): ?>
-                                <?php $reservationName ='#'. $reservation->getId() . ' Nombre de passager(s) ' . $reservation->getnbrPassengers(); ?>
+                                <?php $reservationName ='#'. $reservation->getId(). 'Nom : ' . $reservation->getTitle() . ' Nombre de passager(s) ' . $reservation->getnbrPassengers(); ?>
                                 <input type="checkbox" name="reservations[]" value="<?php echo $reservation->getId(); ?>"><?php echo $reservationName; ?>
                                 <br />
                             <?php endforeach; ?>
