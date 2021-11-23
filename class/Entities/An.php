@@ -7,7 +7,7 @@ use DateTime;
 class An
 {
     private $id;
-    private $title;
+    private $price;
     private $departure;
     private $destination;
     private $datea;
@@ -22,14 +22,14 @@ class An
         $this->id = $id;
     }
 
-    public function getTitle(): string
+    public function getPrice(): float
     {
-        return $this->title;
+        return $this->price;
     }
 
-    public function setTitle(string $title): void
+    public function setPrice(string $price): void
     {
-        $this->title = $title;
+        $this->price = $price;
     }
 
     public function getDeparture(): string

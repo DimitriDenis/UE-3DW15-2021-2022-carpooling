@@ -12,16 +12,16 @@ class AnsService
     /**
      * Create or update an Announcement.
      */
-    public function setAn(?string $id, string $title, string $departure, string $destination, string $datea): string
+    public function setAn(?string $id, string $price, string $departure, string $destination, string $datea): string
     {
         $anId = '';
 
         $dataBaseService = new DataBaseService();
         $dateTime = new DateTime($datea);
         if (empty($id)) {
-            $anId = $dataBaseService->createAn($title, $departure, $destination, $dateTime);
+            $anId = $dataBaseService->createAn($price, $departure, $destination, $dateTime);
         } else {
-            $dataBaseService->updateAn($id, $title, $departure, $destination, $dateTime);
+            $dataBaseService->updateAn($id, $price, $departure, $destination, $dateTime);
             $anId = $id;
         }
 
@@ -42,7 +42,7 @@ class AnsService
                 // Get An :
                 $an = new An();
                 $an->setId($anDTO['id']);
-                $an->setTitle($anDTO['title']);
+                $an->setPrice($anDTO['price']);
                 $an->setDeparture($anDTO['departure']);
                 $an->setDestination($anDTO['destination']);
                 $date = new DateTime($anDTO['datea']);

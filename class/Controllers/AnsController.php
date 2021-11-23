@@ -14,7 +14,7 @@ class AnsController
         $html = '';
 
         // If the form have been submitted :
-        if (isset($_POST['title']) &&
+        if (isset($_POST['price']) &&
             isset($_POST['departure']) &&
             isset($_POST['destination']) &&
             isset($_POST['datea']) &&
@@ -23,7 +23,7 @@ class AnsController
             $ansService = new AnsService();
             $anId = $ansService->setAn(
                 null,
-                $_POST['title'],
+                $_POST['price'],
                 $_POST['departure'],
                 $_POST['destination'],
                 $_POST['datea']
@@ -81,7 +81,7 @@ class AnsController
             $html .= 
                 '<tr>'.
                 '<td>'. '#' . $an->getId() . ' ' . '</td>'.
-                '<td>'. $an->getTitle() . ' ' . '</td>'.
+                '<td>'. $an->getPrice() . ' ' . '</td>'.
                 '<td>'.$an->getDeparture() . ' ' . '</td>'.
                 '<td>'.$an->getDestination() . ' ' . '</td>'.
                 '<td>'.$an->getDate()->format('d-m-Y') . ' ' . '</td>'.

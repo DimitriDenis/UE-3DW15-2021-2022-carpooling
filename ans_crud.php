@@ -25,10 +25,10 @@ echo $controller->getAns();
                 <table id="in_1">
                     <tr>
                         <td>
-                            <label for="name">Nom :</label>  
+                            <label for="price">Prix :</label>  
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="title">
+                            <input type="text" class="form-control" name="price">
                         </td>
                     </tr>
 
