@@ -26,13 +26,13 @@ $reservations = $reservationsService->getReservations();
                             <label for="nbrPassengers">Nombre de passagers :</label>  
                         </td>
                         <td>
-                            <input type="text" name="nbrPassengers">
+                            <input type="text" class="form-control" name="nbrPassengers">
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" value="Créer une réservation">
+                            <input type="submit" class="form-control" value="Créer une réservation">
                         </td>
                     </tr>          
                 </table>
@@ -49,7 +49,7 @@ $reservations = $reservationsService->getReservations();
                             <label for="idup">Id :</label>
                         </td>
                         <td>
-                            <input type="text" name="idup">
+                            <input type="text" class="form-control" name="idup">
                         </td>
                     </tr>
 
@@ -58,13 +58,13 @@ $reservations = $reservationsService->getReservations();
                             <label for="nbrPassengers">Nombre de passagers :</label>
                         </td>
                         <td>
-                            <input type="text" name="nbrPassengersup">
+                            <input type="text" class="form-control" name="nbrPassengersup">
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" value="Modifier la réservation">
+                            <input type="submit" class="form-control" value="Modifier la réservation">
                         </td>
                     </tr>
                 </table>
@@ -81,13 +81,13 @@ $reservations = $reservationsService->getReservations();
                             <label for="id">Id :</label>
                         </td>
                         <td>
-                            <input type="text" name="iddel">
+                            <input type="text" class="form-control" name="iddel">
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" value="Supprimer une reservation">
+                            <input type="submit" class="form-control" value="Supprimer une reservation">
                         </td>
                     </tr>
                 </table>

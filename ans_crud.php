@@ -28,7 +28,7 @@ echo $controller->getAns();
                             <label for="name">Nom :</label>  
                         </td>
                         <td>
-                            <input type="text" name="title">
+                            <input type="text" class="form-control" name="title">
                         </td>
                     </tr>
 
@@ -37,7 +37,7 @@ echo $controller->getAns();
                             <label for="departure">Départ :</label>
                         </td>
                         <td>
-                            <input type="text" name="departure">
+                            <input type="text" class="form-control" name="departure">
                         </td>
                     </tr>
 
@@ -46,7 +46,7 @@ echo $controller->getAns();
                             <label for="destination">Arrivée :</label>
                         </td>
                         <td>
-                            <input type="text" name="destination">
+                            <input type="text" class="form-control" name="destination">
                         </td>
                     </tr>
 
@@ -55,7 +55,7 @@ echo $controller->getAns();
                             <label for="date">Date de départ :</label>
                         </td>
                         <td>
-                            <input type="text" name="datea" placeholder="format dd-mm-yyyy :">
+                            <input type="text" name="datea" class="form-control" placeholder="format dd-mm-yyyy :">
                         </td>
                     </tr>
 
@@ -74,7 +74,7 @@ echo $controller->getAns();
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" value="Créer une annonce">
+                            <input type="submit" class="form-control" value="Créer une annonce">
                         </td>
                     </tr>          
                 </table>
@@ -91,7 +91,7 @@ echo $controller->getAns();
                             <label for="id">Id :</label>
                         </td>
                         <td>
-                            <input type="text" name="idup">
+                            <input type="text" class="form-control" name="idup">
                         </td>
                     </tr>
 
@@ -100,7 +100,7 @@ echo $controller->getAns();
                             <label for="name">Nom :</label>
                         </td>
                         <td>
-                            <input type="text" name="titleup">
+                            <input type="text" class="form-control" name="titleup">
                         </td>
                     </tr>
 
@@ -109,7 +109,7 @@ echo $controller->getAns();
                             <label for="departure">Departure :</label>
                         </td>
                         <td>
-                            <input type="text" name="departureup">
+                            <input type="text" class="form-control" name="departureup">
                         </td>
                     </tr>
 
@@ -118,7 +118,7 @@ echo $controller->getAns();
                             <label for="destination">Destination :</label>
                         </td>
                         <td>
-                            <input type="text" name="destinationup">
+                            <input type="text" class="form-control" name="destinationup">
                         </td>
                     </tr>
 
@@ -127,7 +127,7 @@ echo $controller->getAns();
                             <label for="date">Date :</label>
                         </td>
                         <td>
-                            <input type="text" name="dateup" placeholder="format dd-mm-yyyy :">
+                            <input type="text" name="dateup" class="form-control" placeholder="format dd-mm-yyyy :">
                         </td>
                     </tr>
 
@@ -146,7 +146,7 @@ echo $controller->getAns();
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" value="Modifier l'utilisateur">
+                            <input type="submit" class="form-control" value="Modifier l'utilisateur">
                         </td>
                     </tr>
                 </table>
@@ -163,13 +163,13 @@ echo $controller->getAns();
                             <label for="id">Id :</label>
                         </td>
                         <td>
-                            <input type="text" name="iddel">
+                            <input type="text" class="form-control" name="iddel">
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" value="Supprimer un utilisateur">
+                            <input type="submit" class="form-control" value="Supprimer un utilisateur">
                         </td>
                     </tr>
                 </table>

@@ -22,7 +22,7 @@ echo $controller->getCars();
                             <label for="brand">Marque :</label>  
                         </td>
                         <td>
-                            <input type="text" name="brand">
+                            <input type="text" class="form-control" name="brand">
                         </td>
                     </tr>
 
@@ -31,7 +31,7 @@ echo $controller->getCars();
                             <label for="model">Modèle :</label>
                         </td>
                         <td>
-                            <input type="text" name="model">
+                            <input type="text" class="form-control" name="model">
                         </td>
                     </tr>
 
@@ -40,7 +40,7 @@ echo $controller->getCars();
                             <label for="color">Couleur :</label>
                         </td>
                         <td>
-                            <input type="text" name="color">
+                            <input type="text" class="form-control" name="color">
                         </td>
                     </tr>
 
@@ -49,13 +49,13 @@ echo $controller->getCars();
                             <label for="nbrSlots">Places disponibles :</label>
                         </td>
                         <td>
-                            <input type="text" name="nbrSlots">
+                            <input type="text" class="form-control" name="nbrSlots">
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" value="Créer une voiture">
+                            <input type="submit" class="form-control" value="Créer une voiture">
                         </td>
                     </tr>          
                 </table>
@@ -72,7 +72,7 @@ echo $controller->getCars();
                             <label for="idup">Id :</label>
                         </td>
                         <td>
-                            <input type="text" name="idup">
+                            <input type="text" class="form-control" name="idup">
                         </td>
                     </tr>
 
@@ -81,7 +81,7 @@ echo $controller->getCars();
                             <label for="brand">Marque :</label>
                         </td>
                         <td>
-                            <input type="text" name="brandup">
+                            <input type="text" class="form-control" name="brandup">
                         </td>
                     </tr>
 
@@ -90,7 +90,7 @@ echo $controller->getCars();
                             <label for="lastname">Modèle :</label>
                         </td>
                         <td>
-                            <input type="text" name="model">
+                            <input type="text" class="form-control" name="model">
                         </td>
                     </tr>
 
@@ -99,7 +99,7 @@ echo $controller->getCars();
                             <label for="color">Couleur :</label>
                         </td>
                         <td>
-                            <input type="text" name="color">
+                            <input type="text" class="form-control" name="color">
                         </td>
                     </tr>
 
@@ -108,13 +108,13 @@ echo $controller->getCars();
                             <label for="nbrSlots">Places disponibles :</label>
                         </td>
                         <td>
-                            <input type="text" name="nbrSlots">
+                            <input type="text" class="form-control" name="nbrSlots">
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" value="Modifier la voiture">
+                            <input type="submit" class="form-control" value="Modifier la voiture">
                         </td>
                     </tr>
                 </table>
@@ -130,13 +130,13 @@ echo $controller->getCars();
                             <label for="iddel">Id :</label>
                         </td>
                         <td>
-                            <input type="text" name="iddel">
+                            <input type="text" class="form-control" name="iddel">
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" value="Supprimer la voiture">
+                            <input type="submit" class="form-control" value="Supprimer la voiture">
                         </td>
                     </tr>
                 </table>
