@@ -143,7 +143,7 @@ echo $controller->getUsers();
                         </td>
                         <td>
                             <?php foreach ($ans as $an): ?>
-                                <?php $anName = $an->getTitle() . ' ' . $an->getDeparture() . ' - ' . $an->getDestination(). ' ' ; ?>
+                                <?php $anName = $an->getPrice() . ' ' . $an->getDeparture() . ' - ' . $an->getDestination(). ' ' ; ?>
                                 <input type="checkbox" name="ans[]" value="<?php echo $an->getId(); ?>"><?php echo $anName; ?>
                                 <br />
                             <?php endforeach; ?>
