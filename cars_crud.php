@@ -5,18 +5,26 @@
   </head>
 <?php
 use App\Controllers\CarsController;
+use App\Services\CarsService;
 
 require __DIR__ . '/vendor/autoload.php';
 include_once 'menu/nav.php';
 $controller = new CarsController();
+$carsService = new CarsService();
+$cars = $carsService->getCars();
 echo $controller->getCars();
 ?>
+<br>
 <table id="first_table">
     <tr>
         <td>
-            <p>Création d'une voiture</p>
             <form method="post" action="cars_crud.php" name ="carCreateForm">
-                <table id="in_1">
+                <table class="form-control" id="in_1">
+                    <tr>
+                        <td colspan="2">
+                            <h5>Création d'une voiture</h5>
+                        </td>
+                    </tr>
                     <tr>
                         <td>
                             <label for="brand">Marque :</label>  
@@ -55,24 +63,40 @@ echo $controller->getCars();
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" class="form-control" value="Créer une voiture">
+                            <br>
+                                <input type="submit" class="button" value="Créer">
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <?php echo $controller->createCar();?>
                         </td>
                     </tr>          
                 </table>
-                <?php echo $controller->createCar();?>
             </form>
         </td>
 
         <td>
-        <p>Mise à jour d'une voiture</p>
             <form method="post" action="cars_crud.php" name ="carUpdateForm">
-                <table id='in-3'>
+                <table class="form-control" id='in-3'>
+                    <tr>
+                        <td colspan="2">
+                            <h5>Mise à jour d'une voiture</h5>
+                        </td>
+                    </tr>
                     <tr>
                         <td>
-                            <label for="idup">Id :</label>
+                            <label for="idup">Voiture :</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="idup">
+                            <select name="idup" class="form-control" id="car-select">
+                                <option value="" selected disabled>Choisir une voiture</option>
+                                    <?php foreach ($cars as $car): ?>
+                                        <?php $carName = $car->getBrand() . ' ' . $car->getModel() . ' - ' . $car->getNbrSlots().' place(s)'; ?>
+                                        <option  value="<?php echo $car->getId(); ?>"><?php echo $carName; ?></option>
+                                    <?php endforeach; ?>
+                            </select>
                         </td>
                     </tr>
 
@@ -114,33 +138,55 @@ echo $controller->getCars();
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" class="form-control" value="Modifier la voiture">
+                            <br>
+                                <input type="submit" class="button" value="Mise à jour">
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <?php echo $controller->updateCar();?>
                         </td>
                     </tr>
                 </table>
-                <?php echo $controller->updateCar();?>
             </form>
         </td>
         <td>
-            <p>Supression d'une voiture</p>
             <form method="post" action="cars_crud.php" name ="carDeleteForm">
-                <table id='in_2'>
+                <table class="form-control" id='in_2'>
+                    <tr>
+                        <td colspan="2">
+                            <h5>Supression d'une voiture</h5>
+                        </td>
+                    </tr>
                     <tr>
                         <td>
-                            <label for="iddel">Id :</label>
+                            <label for="iddel">Voiture :</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="iddel">
+                            <select name="iddel" class="form-control" id="car-select">
+                                <option value="" selected disabled>Choisir une voiture</option>
+                                    <?php foreach ($cars as $car): ?>
+                                        <?php $carName = $car->getBrand() . ' ' . $car->getModel() . ' - ' . $car->getNbrSlots().' place(s)'; ?>
+                                        <option  value="<?php echo $car->getId(); ?>"><?php echo $carName; ?></option>
+                                    <?php endforeach; ?>
+                            </select>
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" class="form-control" value="Supprimer la voiture">
+                            <br>
+                                <input type="submit" class="button" value="Supprimer">
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <?php echo $controller->deleteCar();?>
                         </td>
                     </tr>
                 </table>
-                <?php echo $controller->deleteCar();?>
             </form>
         </td>
     </tr>

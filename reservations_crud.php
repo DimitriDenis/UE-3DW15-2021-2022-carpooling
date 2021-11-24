@@ -15,12 +15,18 @@ echo $controller->getReservations();
 $reservationsService = new ReservationsService();
 $reservations = $reservationsService->getReservations();
 ?>
+<br>
 <table id="first_table">
     <tr>
         <td>
-            <p>Création d'une réservation</p>
             <form method="post" action="reservations_crud.php" name ="reservationCreateForm">
-                <table id="in_1">
+                <table class="form-control" id="in_1">
+                    <tr>
+                        <td colspan="2">
+                            <h5>Création d'une réservation</h5>
+                        </td>
+                    </tr>
+
                     <tr>
                         <td>
                             <label for="name">Nom :</label>  
@@ -40,24 +46,42 @@ $reservations = $reservationsService->getReservations();
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" class="form-control" value="Créer une réservation">
+                            <br>
+                                <input type="submit" class="button" value="Créer">
+                            <br>
+                        </td>
+                    </tr> 
+                    <tr>
+                        <td colspan="2">
+                            <?php echo $controller->createReservation();?>
                         </td>
                     </tr>          
                 </table>
-                <?php echo $controller->createReservation();?>
             </form>
         </td>
 
         <td>
-        <p>Mise à jour d'une réservation</p>
             <form method="post" action="reservations_crud.php" name ="reservationUpdateForm">
-                <table id='in-3'>
+                <table class="form-control" id='in-3'>
+                    <tr>
+                        <td colspan="2">
+                            <h5>Mise à jour d'une réservation</h5>
+                        </td>
+                    </tr>
+
                     <tr>
                         <td>
-                            <label for="idup">Id :</label>
+                            <label for="idup">Réservation :</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="idup">
+                            <select name="idup" class="form-control" id="reservation-select">
+                                <option value="" selected disabled>Choisir une réservation</option>
+                                <?php foreach ($reservations as $reservation): ?>
+                                        <?php $reservationName ='#'. $reservation->getId(). ' | ' . $reservation->getTitle() . ' Pour ' . $reservation->getnbrPassengers().' passager(s)'; ?>
+                                        <!--<input type="checkbox" name="reservations[]" value="<?php //echo $reservation->getId(); ?>"><?php //echo $reservationName; ?>-->
+                                        <option  value="<?php echo $reservation->getId(); ?>"><?php echo $reservationName; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </td>
                     </tr>
 
@@ -82,34 +106,58 @@ $reservations = $reservationsService->getReservations();
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" class="form-control" value="Modifier la réservation">
+                            <br>
+                                <input type="submit" class="button" value="Mise à jour">
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <?php echo $controller->updateReservation(); ?>
                         </td>
                     </tr>
                 </table>
-                <?php echo $controller->updateReservation(); ?>
             </form>
         </td>
 
         <td>
-            <p>Supression d'une réservation</p>
             <form method="post" action="reservations_crud.php" name ="reservationDeleteForm">
-                <table id='in_2'>
+                <table class="form-control" id='in_2'>
+                    <tr>
+                        <td colspan="2">
+                            <h5>Supression d'une réservation</h5>
+                        </td>
+                    </tr>
+
                     <tr>
                         <td>
-                            <label for="id">Id :</label>
+                            <label for="id">Réservation :</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="iddel">
+                            <select name="iddel" class="form-control" id="reservation-select">
+                                <option value="" selected disabled>Choisir une réservation</option>
+                                <?php foreach ($reservations as $reservation): ?>
+                                        <?php $reservationName ='#'. $reservation->getId(). ' | ' . $reservation->getTitle() . ' Pour ' . $reservation->getnbrPassengers().' passager(s)'; ?>
+                                        <!--<input type="checkbox" name="reservations[]" value="<?php //echo $reservation->getId(); ?>"><?php //echo $reservationName; ?>-->
+                                        <option  value="<?php echo $reservation->getId(); ?>"><?php echo $reservationName; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" class="form-control" value="Supprimer une reservation">
+                            <br>
+                                <input type="submit" class="button" value="Supprimer">
+                            <br>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <?php echo $controller->deleteReservation();?>
                         </td>
                     </tr>
                 </table>
-                <?php echo $controller->deleteReservation();?>
             </form>
         </td>
     </tr>

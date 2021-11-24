@@ -5,24 +5,33 @@
 </head>
 <?php
 use App\Controllers\AnsController;
+use App\Services\AnsService;
 use App\Services\CarsService;
 use App\Services\ReservationsService;
 
 require __DIR__ . '/vendor/autoload.php';
 include_once 'menu/nav.php';
 $controller = new AnsController();
+$ansService = new AnsService();
+$ans =  $ansService->getAns();
 $carsService = new CarsService();
 $cars = $carsService->getCars();
 $reservationsService = new ReservationsService;
 $reservations = $reservationsService->getReservations();
 echo $controller->getAns();
 ?>
+<br>
 <table id="first_table">
     <tr>
         <td>
-            <p>Création d'une annonce</p>
             <form method="post" action="ans_crud.php" name ="anCreateForm">
-                <table id="in_1">
+                <table class="form-control" id="in_1">
+                    <tr>
+                        <td colspan="2">
+                            <h5>Création d'une annonce</h5>
+                        </td>
+                    </tr>
+
                     <tr>
                         <td>
                             <label for="price">Prix :</label>  
@@ -64,34 +73,54 @@ echo $controller->getAns();
                             <label for="cars">Voiture :</label>
                         </td>
                         <td>
-                            <?php foreach ($cars as $car): ?>
-                                <?php $carName = $car->getBrand() . ' ' . $car->getModel() . '' . $car->getColor(). ' - ' . $car->getNbrSlots().' place(s)'; ?>
-                                <input type="checkbox" name="cars[]" value="<?php echo $car->getId(); ?>"><?php echo $carName; ?>
-                                <br />
-                            <?php endforeach; ?>
+                            <select name="cars[]" class="form-control" id="car-select">
+                                <option value="" selected disabled>Choisir une voiture</option>
+                                    <?php foreach ($cars as $car): ?>
+                                        <?php $carName = $car->getBrand() . ' ' . $car->getModel() . ' - ' . $car->getNbrSlots().' place(s)'; ?>
+                                        <!--<input type="checkbox" name="cars[]" value="<?php //echo $car->getId(); ?>"><?php // echo $carName; ?>-->
+                                        <option  value="<?php echo $car->getId(); ?>"><?php echo $carName; ?></option>
+                                    <?php endforeach; ?>
+                            </select>
                         </td>
                     </tr>
 
                     <tr>
-                        <td colspan="2">
-                            <input type="submit" class="form-control" value="Créer une annonce">
+                        <td style="text-align:center" colspan="2">
+                            <br><input type="submit" class="button" value="Créer">
                         </td>
-                    </tr>          
+                    </tr> 
+                    
+                    <tr>
+                        <td colspan="2">
+                            <?php echo $controller->createAn(); ?>
+                        </td>
+                    </tr>
                 </table>
-                <?php echo $controller->createAn(); ?>
             </form>
         </td>
 
         <td>
-            <p>Mise à jour d'une annonce</p>
             <form method="post" action="ans_crud.php" name ="anUpdateForm">
-                <table id='in-3'>
+                <table class="form-control" id='in-3'>
+                    <tr>
+                        <td colspan='2'>
+                            <h5>Mise à jour d'une annonce</h5>
+                        </td>
+                    </tr>
+                    
                     <tr>
                         <td>
-                            <label for="id">Id :</label>
+                            <label for="id">Annonce :</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="idup">
+                        <select name="idup" class="form-control" id="an-select">
+                                <option value="" selected disabled>Choisir une annonce</option>
+                                <?php foreach ($ans as $an): ?>
+                                        <?php $anName ='#'. $an->getId(). ' | ' . $an->getPrice() . '€ ' . $an->getDeparture().'➔'. $an->getDestination(); ?>
+                                        <!--<input type="checkbox" name="reservations[]" value="<?php //echo $reservation->getId(); ?>"><?php //echo $reservationName; ?>-->
+                                        <option  value="<?php echo $an->getId(); ?>"><?php echo $anName; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </td>
                     </tr>
 
@@ -100,13 +129,13 @@ echo $controller->getAns();
                             <label for="name">Prix :</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="price">
+                            <input type="text" class="form-control" name="priceup">
                         </td>
                     </tr>
 
                     <tr>
                         <td>
-                            <label for="departure">Departure :</label>
+                            <label for="departure">Départ :</label>
                         </td>
                         <td>
                             <input type="text" class="form-control" name="departureup">
@@ -115,7 +144,7 @@ echo $controller->getAns();
 
                     <tr>
                         <td>
-                            <label for="destination">Destination :</label>
+                            <label for="destination">Arrivée :</label>
                         </td>
                         <td>
                             <input type="text" class="form-control" name="destinationup">
@@ -136,44 +165,74 @@ echo $controller->getAns();
                             <label for="reservation">Réservation :</label>
                         </td>
                         <td>
-                        <?php foreach ($reservations as $reservation): ?>
-                                <?php $reservationName ='#'. $reservation->getId(). 'Nom : ' . $reservation->getTitle() . ' Nombre de passager(s) ' . $reservation->getnbrPassengers(); ?>
-                                <input type="checkbox" name="reservations[]" value="<?php echo $reservation->getId(); ?>"><?php echo $reservationName; ?>
-                                <br />
-                            <?php endforeach; ?>
+                            <select name="reservations[]" class="form-control" id="reservation-select">
+                                <option value="" selected disabled>Choisir une réservation</option>
+                                <option value="0" >Aucune</option>
+                                <?php foreach ($reservations as $reservation): ?>
+                                        <?php $reservationName ='#'. $reservation->getId(). ' | ' . $reservation->getTitle() . ' Pour ' . $reservation->getnbrPassengers().' passager(s)'; ?>
+                                        <!--<input type="checkbox" name="reservations[]" value="<?php //echo $reservation->getId(); ?>"><?php //echo $reservationName; ?>-->
+                                        <option  value="<?php echo $reservation->getId(); ?>"><?php echo $reservationName; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="text-align:center" colspan="2">
+                            <br><input type="submit" class="button" value="Mise à jour">
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" class="form-control" value="Modifier l'utilisateur">
+                            <?php echo $controller->updateAn(); ?>
                         </td>
                     </tr>
                 </table>
-                <?php echo $controller->updateAn(); ?>
             </form>
         </td>
 
         <td>
-            <p>Supression d'une annonce</p>
+            
             <form method="post" action="ans_crud.php" name ="anDeleteForm">
-                <table id='in_2'>
+                <table class="form-control" id='in_2'>
+                    <tr>
+                        <td colspan="2">
+                            <h5>Supression d'une annonce</h5>
+                        </td>
+                    </tr>
+                    
                     <tr>
                         <td>
-                            <label for="id">Id :</label>
+                            <label for="id">Annonce :</label>
                         </td>
+
                         <td>
-                            <input type="text" class="form-control" name="iddel">
+                            <select name="iddel" class="form-control" id="an-select">
+                                <option value="" selected disabled>Choisir une annonce</option>
+                                <?php foreach ($ans as $an): ?>
+                                        <?php $anName ='#'. $an->getId(). ' | ' . $an->getPrice() . '€ ' . $an->getDeparture().'➔'. $an->getDestination(); ?>
+                                        <!--<input type="checkbox" name="reservations[]" value="<?php //echo $reservation->getId(); ?>"><?php //echo $reservationName; ?>-->
+                                        <option  value="<?php echo $an->getId(); ?>"><?php echo $anName; ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="text-align:center" colspan="2">
+                            <br>
+                                <input type="submit" class="button" value="Supprimer">
+                            <br>
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" class="form-control" value="Supprimer un utilisateur">
+                            <?php echo $controller->deleteAn(); ?>
                         </td>
                     </tr>
                 </table>
-                <?php echo $controller->deleteAn(); ?>
             </form>
         </td>
     </tr>
