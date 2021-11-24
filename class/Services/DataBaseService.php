@@ -285,7 +285,7 @@ class DataBaseService
             'titleup' => $titleup,
             'nbrPassengersup' => $nbrPassengersup,
         ];
-        $sql = 'UPDATE reservations SET titleup = :titleup, nbrPassengersup = :nbrPassengersup WHERE id = :id;';
+        $sql = 'UPDATE reservations SET title = :titleup, nbrPassengers = :nbrPassengersup WHERE id = :id;';
         $query = $this->connection->prepare($sql);
         $isOk = $query->execute($data);
         

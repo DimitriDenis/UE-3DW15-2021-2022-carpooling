@@ -8,10 +8,14 @@ use App\Controllers\UsersController;
 use App\Services\CarsService;
 use App\Services\AnsService;
 use App\Services\ReservationsService;
+use App\Services\UsersService;
 
 require __DIR__ . '/vendor/autoload.php';
 include_once 'menu/nav.php';
 $controller = new UsersController();
+
+$usersService = new UsersService();
+$users= $usersService->getUsers();
 
 $carsService = new CarsService();
 $cars = $carsService->getCars();
@@ -27,9 +31,14 @@ echo $controller->getUsers();
 <table id="first_table">
     <tr>
         <td>
-            <p>Création d'un utilisateur</p>
             <form method="post" action="users_crud.php" name ="userCreateForm">
-                <table id="in_1">
+                <table class='form-control' id="in_1">
+                    <tr>
+                        <td colspan="2">
+                            <h5>Création d'un utilisateur</h5>
+                        </td>
+                    </tr>
+
                     <tr>
                         <td>
                             <label for="firstname">Prénom :</label>  
@@ -50,7 +59,7 @@ echo $controller->getUsers();
 
                     <tr>
                         <td>
-                            <label for="email">Email :</label>
+                            <label for="email">E-mail :</label>
                         </td>
                         <td>
                             <input type="text" class="form-control" name="email">
@@ -59,7 +68,7 @@ echo $controller->getUsers();
 
                     <tr>
                         <td>
-                            <label for="birthday">Date d'anniversaire :</label>
+                            <label for="birthday">Date de naissance :</label>
                         </td>
                         <td>
                             <input type="text" class="form-control" name="birthday" placeholder="format dd-mm-yyyy :">
@@ -71,17 +80,22 @@ echo $controller->getUsers();
                             <label for="cars">Voiture(s) :</label>
                         </td>
                         <td>
-                            <?php foreach ($cars as $car): ?>
-                                <?php $carName = $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor(). ' - ' . $car->getNbrSlots().' place(s)'; ?>
-                                <input type="checkbox" name="cars[]" value="<?php echo $car->getId(); ?>"><?php echo $carName; ?>
-                                <br />
-                            <?php endforeach; ?>
+                            <select name="cars[]" class="form-control" id="an-select">
+                                    <option value="" selected disabled>Choisir une Voiture</option>
+                                    <?php foreach ($cars as $car): ?>
+                                        <?php $carName = $car->getBrand() . ' ' . $car->getModel() . ' ' . $car->getColor(). ' - ' . $car->getNbrSlots().' place(s)'; ?>
+                                        <option  value="<?php echo $car->getId(); ?>"><?php echo $carName; ?></option>
+                                        <br />
+                                    <?php endforeach; ?>
+                            </select>
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" class="form-control" value="Créer un utilisateur">
+                            <br>
+                                <input type="submit" class="button" value="Créer un utilisateur">
+                            <br>
                         </td>
                     </tr>          
                 </table>
@@ -89,15 +103,26 @@ echo $controller->getUsers();
             </form>
         </td>
         <td>
-        <p>Mise à jour d'un utilisateur</p>
             <form method="post" action="users_crud.php" name ="userUpdateForm">
-                <table id='in-3'>
+                <table class='form-control' id='in_2'>
+                    <tr>
+                        <td colspan="2">
+                            <h5>Mise à jour d'un utilisateur</h5>
+                        </td>
+                    </tr>
                     <tr>
                         <td>
-                            <label for="id">Id :</label>
+                            <label for="id">Utilisateur :</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="id">
+                        <select name="id" class="form-control" id="an-select">
+                                <option value="" selected disabled>Choisir un utilisateur</option>
+                                <?php foreach ($users as $user): ?>
+                                        <?php $userName ='#'. $user->getId(). ' | ' . $user->getFirstname() . ' ' . $user->getLastname();?>
+                                        <!--<input type="checkbox" name="reservations[]" value="<?php //echo $reservation->getId(); ?>"><?php //echo $reservationName; ?>-->
+                                        <option  value="<?php echo $user->getId(); ?>"><?php echo $userName; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </td>
                     </tr>
 
@@ -121,7 +146,7 @@ echo $controller->getUsers();
 
                     <tr>
                         <td>
-                            <label for="email">Email :</label>
+                            <label for="email">E-mail :</label>
                         </td>
                         <td>
                             <input type="text" class="form-control" name="email">
@@ -130,7 +155,7 @@ echo $controller->getUsers();
 
                     <tr>
                         <td>
-                            <label for="birthday">Date d'anniversaire :</label>
+                            <label for="birthday">Date de naissance :</label>
                         </td>
                         <td>
                             <input type="text" class="form-control" name="birthday" placeholder="format dd-mm-yyyy :">
@@ -142,11 +167,15 @@ echo $controller->getUsers();
                             <label for="ans">Annonce(s) :</label>
                         </td>
                         <td>
-                            <?php foreach ($ans as $an): ?>
-                                <?php $anName = $an->getPrice() . ' ' . $an->getDeparture() . ' - ' . $an->getDestination(). ' ' ; ?>
-                                <input type="checkbox" name="ans[]" value="<?php echo $an->getId(); ?>"><?php echo $anName; ?>
-                                <br />
-                            <?php endforeach; ?>
+                            <select name="ans[]" class="form-control" id="an-select">
+                                <option value="" selected disabled>Choisir une Annonce</option>
+                                <option value="0" >Aucune</option>
+                                <?php foreach ($ans as $an): ?>
+                                    <?php $anName ="#".$an->getId() .'| '. $an->getPrice() . '€ ' . $an->getDeparture() . '➔' . $an->getDestination(). ' ' ; ?>
+                                    <!--<input type="checkbox" name="ans[]" value="<?php //echo $an->getId(); ?>"><?php //echo $anName; ?>-->
+                                    <option  value="<?php echo $an->getId(); ?>"><?php echo $anName; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </td>
                     </tr>
 
@@ -155,17 +184,23 @@ echo $controller->getUsers();
                             <label for="reservations">Reservation(s) :</label>
                         </td>
                         <td>
-                            <?php foreach ($reservations as $reservation): ?>
-                                <?php $reservationName = $reservation->getId() . ' '. $reservation->getNbrPassengers(). ' passagers'; ?>
-                                <input type="checkbox" name="reservations[]" value="<?php echo $reservation->getId(); ?>"><?php echo $reservationName; ?>
-                                <br />
-                            <?php endforeach; ?>
+                            <select name="reservations[]" class="form-control" id="reservation-select">
+                                <option value="" selected disabled>Choisir une Réservation</option>
+                                <option value="0" >Aucune</option>
+                                <?php foreach ($reservations as $reservation): ?>
+                                        <?php $reservationName ='#'. $reservation->getId(). ' | ' . $reservation->getTitle() . ' Pour ' . $reservation->getnbrPassengers().' passager(s)'; ?>
+                                        <!--<input type="checkbox" name="reservations[]" value="<?php //echo $reservation->getId(); ?>"><?php //echo $reservationName; ?>-->
+                                        <option  value="<?php echo $reservation->getId(); ?>"><?php echo $reservationName; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" class="form-control" value="Modifier l'utilisateur">
+                            <br>
+                                <input type="submit" class="button" value="Mise à jour utilisateur">
+                            <br>
                         </td>
                     </tr>
                 </table>
@@ -173,21 +208,35 @@ echo $controller->getUsers();
             </form>
         </td>
         <td>
-            <p>Supression d'un utilisateur</p>
             <form method="post" action="users_crud.php" name ="userDeleteForm">
-                <table id='in_2'>
+                <table class='form-control' id='in_3'>
+                    <tr>
+                        <td colspan="2">
+                            <h5>Supression d'un utilisateur</h5>
+                        </td>
+                    </tr>
+
                     <tr>
                         <td>
-                            <label for="id">Id :</label>
+                            <label for="id">Utilisateur :</label>
                         </td>
                         <td>
-                            <input type="text" class="form-control" name="iddel">
+                            <select name="iddel" class="form-control" id="an-select">
+                                <option value="" selected disabled>Choisir une Réservation</option>
+                                <?php foreach ($users as $user): ?>
+                                        <?php $userName ='#'. $user->getId(). ' | ' . $user->getFirstname() . ' ' . $user->getLastname();?>
+                                        <!--<input type="checkbox" name="reservations[]" value="<?php //echo $reservation->getId(); ?>"><?php //echo $reservationName; ?>-->
+                                        <option  value="<?php echo $user->getId(); ?>"><?php echo $userName; ?></option>
+                                <?php endforeach; ?>
+                            </select>
                         </td>
                     </tr>
 
                     <tr>
                         <td colspan="2">
-                            <input type="submit" class="form-control" value="Supprimer un utilisateur">
+                            <br>
+                                <input type="submit" class="button" value="Supprimer">
+                            <br>
                         </td>
                     </tr>
                 </table>

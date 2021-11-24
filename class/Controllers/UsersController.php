@@ -80,7 +80,7 @@ class UsersController
 
             if (!empty($user->getAns())) {
                 foreach ($user->getAns() as $an) {
-                    $ansHtml .= '#'.$an->getTitle() . '| ' . $an->getDeparture() . '-' . $an->getDestination() . ' ';
+                    $ansHtml .= '#'.$an->getId(). ' | ' .$an->getPrice() . '€ : ' . $an->getDeparture() . '=>' . $an->getDestination() . ' ';
                 }
             }
 
@@ -101,7 +101,7 @@ class UsersController
                 '<td>'. $carsHtml . ' '. '</td>'.
                 '<td>'. $ansHtml . ' '. '</td>'.
                 '<td>'. $resHtml . ' '. '</td>'.
-                '<tr>';
+                '</tr>';
         }
         $html .= '</table>';
         return $html;

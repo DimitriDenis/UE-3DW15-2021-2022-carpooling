@@ -102,7 +102,7 @@ class AnsController
 
         // If the form have been submitted :
         if (isset($_POST['idup']) &&
-            isset($_POST['titleup']) &&
+            isset($_POST['priceup']) &&
             isset($_POST['departureup']) &&
             isset($_POST['destinationup']) &&
             isset($_POST['dateup']) &&
@@ -112,16 +112,20 @@ class AnsController
             $ansService = new AnsService();
             $isOk = $ansService->setAn(
                 $_POST['idup'],
-                $_POST['titleup'],
+                $_POST['priceup'],
                 $_POST['departureup'],
                 $_POST['destinationup'],
                 $_POST['dateup']
             );
+            $isOk = true;
             if (!empty($_POST['reservations'])) {
                 foreach ($_POST['reservations'] as $reservationId) {
                     $isOk = $ansService->setAnReservation($anId, $reservationId);
                 }
+            if ($_POST['reservations']==0) { 
+                $isOk=True;
             }
+        }
             if ($isOk) {
                 $html = 'Annonce mise à jour avec succès.';
             } else {
