@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql
--- Generation Time: Nov 24, 2021 at 02:51 AM
+-- Generation Time: Nov 28, 2021 at 09:37 PM
 -- Server version: 8.0.22
 -- PHP Version: 7.4.20
 
@@ -41,7 +41,8 @@ CREATE TABLE `announcements` (
 
 INSERT INTO `announcements` (`id`, `price`, `departure`, `destination`, `datea`) VALUES
 (1, 55, 'Tours', 'Paris', '2021-11-22 00:00:00'),
-(4, 10, 'Marseille', 'Lyon', '2021-11-19 14:33:01');
+(4, 10, 'Marseille', 'Lyon', '2021-11-19 14:33:01'),
+(20, 55, 'Paris', 'Limoges', '2021-11-30 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -61,15 +62,7 @@ CREATE TABLE `announcements_cars` (
 INSERT INTO `announcements_cars` (`announcement_id`, `car_id`) VALUES
 (1, 3),
 (4, 2),
-(9, 1),
-(10, 2),
-(11, 2),
-(12, 2),
-(13, 3),
-(14, 1),
-(15, 1),
-(16, 1),
-(17, 1);
+(9, 1);
 
 -- --------------------------------------------------------
 
@@ -88,10 +81,7 @@ CREATE TABLE `announcements_reservations` (
 
 INSERT INTO `announcements_reservations` (`announcement_id`, `reservation_id`) VALUES
 (1, 2),
-(4, 3),
-(10, 2),
-(12, 2),
-(15, 0);
+(4, 3);
 
 -- --------------------------------------------------------
 
@@ -115,8 +105,8 @@ INSERT INTO `cars` (`id`, `brand`, `model`, `color`, `nbrSlots`) VALUES
 (1, 'Skoda', 'Fabia', 'Noire', 5),
 (2, 'Huandai', 'Getz', 'Rouge', 5),
 (3, 'Mercedes', 'Classe C', 'Noire', 4),
-(4, 'Renaut', 'Zoé', 'Bleu', 2),
-(5, 'Tesla', 'Y', 'Red', 2);
+(4, 'Renaut', 'Zoé', 'Bleue', 2),
+(5, 'Tesla', 'Y', 'Rouge', 2);
 
 -- --------------------------------------------------------
 
@@ -138,7 +128,8 @@ INSERT INTO `reservations` (`id`, `title`, `nbrPassengers`) VALUES
 (1, 'Marques', 2),
 (2, 'Denis', 3),
 (3, 'Godé', 4),
-(5, 'Gentil', 6);
+(12, 'Dumoulin', 5),
+(13, 'Dupond', 1);
 
 -- --------------------------------------------------------
 
@@ -162,8 +153,8 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `email`, `birthday`) VALUES
 (1, 'Vincent', 'Godé', 'hello@vincentgo.fr', '1990-11-08 00:00:00'),
 (2, 'Albert', 'Dupond', 'sonemail@gmail.com', '1985-11-08 00:00:00'),
 (3, 'Thomas', 'Dumoulin', 'sonemail2@gmail.com', '1985-10-08 00:00:00'),
-(4, 'Adrien', 'Marques', 'marqueslaw19@gmail.com', '2000-12-19 00:00:00'),
-(12, 'Dimitri', 'Denis', 'dimdim@gmail.com', '2020-12-18 00:00:00');
+(4, 'Adrien', 'Marques', 'adrien.marques@etu.unilim.fr', '2000-12-19 00:00:00'),
+(12, 'Dimitri', 'Denis', 'dimitri.denis@etu.unilim.fr', '1995-05-21 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -181,8 +172,11 @@ CREATE TABLE `users_announcements` (
 --
 
 INSERT INTO `users_announcements` (`user_id`, `announce_id`) VALUES
-(4, 4),
-(28, 4);
+(1, 20),
+(2, 20),
+(3, 20),
+(4, 1),
+(12, 1);
 
 -- --------------------------------------------------------
 
@@ -204,12 +198,7 @@ INSERT INTO `users_cars` (`user_id`, `car_id`) VALUES
 (2, 3),
 (3, 4),
 (4, 2),
-(8, 4),
-(9, 1),
-(12, 3),
-(27, 1),
-(28, 4),
-(29, 2);
+(12, 3);
 
 -- --------------------------------------------------------
 
@@ -227,8 +216,11 @@ CREATE TABLE `users_reservations` (
 --
 
 INSERT INTO `users_reservations` (`user_id`, `reservation_id`) VALUES
-(4, 2),
-(28, 3);
+(1, 3),
+(2, 3),
+(3, 12),
+(4, 1),
+(12, 2);
 
 --
 -- Indexes for dumped tables
@@ -296,25 +288,25 @@ ALTER TABLE `users_reservations`
 -- AUTO_INCREMENT for table `announcements`
 --
 ALTER TABLE `announcements`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `cars`
 --
 ALTER TABLE `cars`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
